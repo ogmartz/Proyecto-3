@@ -136,6 +136,8 @@
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -40%) scale(0.95);
             width: 90%; max-width: 700px;
+            max-height: 85vh; /* Limita la altura para que encaje en pantalla */
+            overflow-y: auto; /* Activa el scroll si el contenido es largo */
             background: rgba(15, 12, 41, 0.4);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -146,6 +148,18 @@
             opacity: 0; pointer-events: none;
             transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: center; z-index: 10;
+        }
+
+        /* Barra de scroll personalizada para la carta de cristal */
+        .glass-letter::-webkit-scrollbar {
+            width: 6px;
+        }
+        .glass-letter::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .glass-letter::-webkit-scrollbar-thumb {
+            background: rgba(255, 77, 77, 0.4);
+            border-radius: 10px;
         }
 
         .glass-letter.show-letter {
@@ -179,7 +193,7 @@
             .modal-body { flex-direction: column; gap: 25px; }
             .image-content { order: -1; }
             .image-content img { max-width: 250px; }
-            .glass-letter { padding: 30px 20px; }
+            .glass-letter { padding: 30px 20px; max-height: 80vh; }
             .glass-letter h1 { font-size: 2.5rem; }
             .glass-letter img { max-width: 220px; }
         }
@@ -242,9 +256,9 @@
                 id: 1, 
                 author: "Oscar",
                 title: "BAILA CONMIGO EL BAILE DE LA VIDA",
-                text: "Pensé que lo más hermoso que podía contemplar era el cielo estrellado de una noche oscura, hasta que descubrí constelaciones enteras latiendo en tu mirada, incluso a plena luz del día. Desde entonces, alzar la vista al cielo ya no tiene el mismo significado: el único universo que me atrapa y me deja sin palabras es el tuyo.No sé si este pensamiento constante nace de tu ausencia en mi realidad o de lo mucho que habitas en mis sueños, pero tengo la certeza de que cada palabra que te escribo es un acierto. Al cerrar los ojos, la oscuridad no existe; el resplandor de tu alma ilumina cada rincón de la mía. \n\nEsa decisión marco un cambio en mi vida maravilloso, me mostro que siempre vale la pena intentar una vez más, nuevamente te agradezco por llegar a mi vida y mostrarme lo maravillosa que es.\n\nGracias. Con amor Oscar.",
+                text: "Pensé que lo más hermoso que podía contemplar era el cielo estrellado de una noche oscura, hasta que descubrí constelaciones enteras latiendo en tu mirada, incluso a plena luz del día. Desde entonces, alzar la vista al cielo ya no tiene el mismo significado: el único universo que me atrapa y me deja sin palabras es el tuyo.\n\nNo sé si este pensamiento constante nace de tu ausencia en mi realidad o de lo mucho que habitas en mis sueños, pero tengo la certeza de que cada palabra que te escribo es un acierto. Al cerrar los ojos, la oscuridad no existe; el resplandor de tu alma ilumina cada rincón de la mía.",
                 signature: "Te amo, Luisa ❤️",
-                image: "NOSOTROS.jpg" // Sube la imagen a GitHub con este nombre exacto
+                image: "NOSOTROS.jpg" 
             },
             {
                 id: 2,
