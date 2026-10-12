@@ -215,13 +215,29 @@
         }
         .close-button:hover { transform: rotate(90deg) scale(1.2); color: #fff; }
         
-        .modal-body { display: flex; align-items: center; gap: 40px; max-height: 60vh; overflow-y: auto; padding-right: 10px; }
-        .text-content { text-align: center; flex: 1; }
+        /* Ajustado para permitir leer textos largos sin que se corten */
+        .modal-body { 
+            display: flex; 
+            align-items: flex-start; /* Alineación arriba para el scroll */
+            gap: 40px; 
+            max-height: 75vh; 
+            overflow-y: auto; 
+            padding-right: 15px; 
+        }
+        .text-content { text-align: center; flex: 1; padding-bottom: 20px; }
         .text-content h1 { font-family: 'Dancing Script', cursive; font-size: 3.2rem; margin-bottom: 25px; color: var(--secondary-color); text-shadow: 0 0 20px var(--glow); }
         .text-content p { font-size: 1.15rem; line-height: 1.7; margin-bottom: 20px; white-space: pre-line; color: #f3e8ff; }
         .text-content .signature { font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 30px; display: block; color: var(--secondary-color); }
         
-        .image-content { flex-shrink: 0; }
+        .image-content { 
+            flex-shrink: 0; 
+            position: sticky; 
+            top: 0; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; /* Espacio entre las imágenes múltiples */
+        } 
+        
         .image-content img {
             max-width: 350px; width: 100%; border-radius: 15px;
             border: 3px solid var(--image-border); object-fit: cover; box-shadow: 0 0 25px var(--glow);
@@ -284,8 +300,8 @@
         }
 
         @media (max-width: 850px) {
-            .modal-body { flex-direction: column; gap: 25px; }
-            .image-content { order: -1; }
+            .modal-body { flex-direction: column; gap: 25px; align-items: center; }
+            .image-content { position: relative; order: -1; }
             .image-content img { max-width: 250px; }
             .glass-letter { padding: 30px 20px; }
             .glass-letter h1 { font-size: 2.5rem; }
@@ -326,8 +342,8 @@
                     <p id="modalText">Texto</p>
                     <span class="signature" id="modalSignature">Firma</span>
                 </div>
-                <div class="image-content">
-                    <img id="modalImage" src="" alt="Imagen">
+                <div class="image-content" id="modalImageContainer">
+                    <!-- Las imágenes se inyectarán aquí -->
                 </div>
             </div>
         </div>
@@ -382,7 +398,7 @@
                 title: "BAILA CONMIGO EL BAILE DE LA VIDA",
                 text: "Pensé que lo más hermoso que podía contemplar era el cielo estrellado de una noche oscura, hasta que descubrí constelaciones enteras latiendo en tu mirada, incluso a plena luz del día. Desde entonces, alzar la vista al cielo ya no tiene el mismo significado: el único universo que me atrapa y me deja sin palabras es el tuyo.\n\nNo sé si este pensamiento constante nace de tu ausencia en mi realidad o de lo mucho que habitas en mis sueños, pero tengo la certeza de que cada palabra que te escribo es un acierto. Al cerrar los ojos, la oscuridad no existe; el resplandor de tu alma ilumina cada rincón de la mía.\n\nEsa decisión marcó un cambio en mi vida maravilloso, me mostró que siempre vale la pena intentar una vez más, nuevamente te agradezco por llegar a mi vida y mostrarme lo maravillosa que es.\n\nGracias. Con amor Oscar.",
                 signature: "Te amo, Luisa 💜",
-                image: "NOSOTROS.jpg"
+                images: ["NOSOTROS.jpg"]
             },
             {
                 id: 2,
@@ -390,16 +406,16 @@
                 title: "MI LUZ BRILLANTE",
                 text: "Desde el primer día que llegaste a mi vida, supe que eras alguien especial. \n\nNo importa cuánto crezcas o a dónde vayas, siempre estaré aquí para apoyarte en cada paso que des. Me haces sentir la persona más afortunada del mundo.",
                 signature: "Con todo mi amor, Mamá 🌸",
-                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80",
+                images: ["https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"],
                 theme: { c1: "#3a0ca3", c2: "#7209b7", c3: "#b5179e", glow: "rgba(181, 23, 158, 0.8)" }
             },
             {
                 id: 3,
-                author: "Amigos",
-                title: "NUESTRA PERSONA FAVORITA",
-                text: "De todas las casualidades de la vida, conocerte fue nuestra favorita.\n\nGracias por estar en los peores momentos y por reír con nosotros hasta que nos duele el estómago en los mejores. Eres increíble.",
-                signature: "Tu familia elegida ✨",
-                image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80",
+                author: "Camil",
+                title: "MI PASTELITO",
+                text: "Holiii mi pastelitooo, ¡mi linda, espero que estés súper y mega bien! Y si no es así, sabes que siempre estaré aquí para escucharte. No importa si no hemos hablado hace poco, sabes que si necesitas desahogarte siempre estaré ahí, como lo hemos estado todos estos años, estando la una para la otra.\n\nMuchas gracias por ser esa personita tan hermosa con la que en muchas ocasiones compartimos la misma neurona ajajja y eso me encantaaaa🙂‍↕️.\n\nAmo tu lado creativo  (me encantaaa y lo sabes, nunca dejare de decirtelo jsjsksk) y tu lado melancólico; son unos de tus tantos talentos que la verdad me sorprenden. Eres una de las personitas más creativas e ingeniosas que conozco, así que sigue adelante y cumple todos tus sueños. Yo sé que tú puedes; no va a ser algo de la noche a la mañana, pero sé que lo vas a lograr, ya que eres una personita demasiado inteligente y capaz. Sé que para ti no ha sido fácil llegar a donde estás, pero lo has hecho y de una manera excelente, por lo cual estoy muy orgullosa de ti y de la gran personita en la que te estás convirtiendo.\n\n¡Aaaay mi Lulu, eres mi escritora favorita! Por favor, sigamos escribiendo juntas la historia de wd jajaja, era uno de mis días más felices y emocionantes; obviamente la historia no va a tener la misma trama, pero de verdad era buena sjsjsjjs. No digo que lo vayamos a hacer ahora o mañana jajaja, sino que lo hagamos en algún momento nuevamente sjsjjs, extraño eso.\n\nY extraño pasar más tiempo juntas, nuestros días en el SENA me mal acostumbraron, te extraño mi linda dndjdkjd.\n\nMuchas gracias por todo 💜. Jajajaj no sé, tú sabes que mi especialidad es hablar de todo y de nada jajsj, y así despido esta pequeña carta (la cual sé que soy muy mala haciendo sjjsjs).\n\nTe amo muchote, mi Lulu, y te extraño aún más. Muchos besos y abrazos para esa linda, muaaaaaaa.",
+                signature: "Muchos besos y abrazos muaaaaaaa ! ?",
+                images: ["FOTO-CAMILA.jpeg", "FOTO-CAMILA2.jpeg"],
                 theme: { c1: "#480ca8", c2: "#560bad", c3: "#b5179e", glow: "rgba(86, 11, 173, 0.8)" }
             }
         ];
@@ -430,7 +446,7 @@
 
             if (carta.id === 1) {
                 document.getElementById('oscarTitle').textContent = carta.title;
-                document.getElementById('oscarImage').src = carta.image;
+                document.getElementById('oscarImage').src = carta.images[0];
                 document.getElementById('oscarText').textContent = carta.text;
                 document.getElementById('oscarSignature').textContent = carta.signature;
                 
@@ -441,7 +457,18 @@
                 document.getElementById('modalTitle').textContent = carta.title;
                 document.getElementById('modalText').textContent = carta.text;
                 document.getElementById('modalSignature').textContent = carta.signature;
-                document.getElementById('modalImage').src = carta.image;
+                
+                // Limpiar imágenes previas
+                const imageContainer = document.getElementById('modalImageContainer');
+                imageContainer.innerHTML = '';
+                
+                // Añadir todas las imágenes de la carta
+                carta.images.forEach(imgSrc => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imgSrc;
+                    imgElement.alt = "Imagen adjunta";
+                    imageContainer.appendChild(imgElement);
+                });
 
                 const box = document.getElementById('modalBox');
                 box.style.setProperty('--c1', carta.theme.c1);
@@ -459,7 +486,9 @@
         function closeModals() {
             document.getElementById('modalStandard').classList.remove('active');
             document.body.style.overflow = 'auto';
-            setTimeout(() => document.getElementById('modalImage').src = '', 400);
+            setTimeout(() => {
+                document.getElementById('modalImageContainer').innerHTML = '';
+            }, 400);
         }
 
         function closeTreeModal() {
