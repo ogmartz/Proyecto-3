@@ -66,7 +66,7 @@
             100% { transform: translateY(-10vh) scale(1); opacity: 0; }
         }
 
-        /* --- PANTALLAS Y TRANSICIONES --- */
+        /* --- PANTALLAS --- */
         .screen {
             min-height: 100vh; width: 100%;
             transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
@@ -77,7 +77,7 @@
         .hidden-screen { opacity: 0; pointer-events: none; transform: scale(0.95); z-index: 0; visibility: hidden; }
         .active-screen { opacity: 1; pointer-events: auto; transform: scale(1); z-index: 2; position: relative; visibility: visible; }
 
-        /* --- PANTALLA PRINCIPAL (LANDING) --- */
+        /* --- LANDING --- */
         .landing-content {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             text-align: center; padding: 20px; position: relative; z-index: 3;
@@ -85,23 +85,15 @@
         }
         
         .landing-badge {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-            opacity: 0.9;
-            border: 1px solid rgba(226, 183, 255, 0.3);
-            padding: 8px 20px;
-            border-radius: 20px;
-            background: rgba(176, 87, 245, 0.15);
-            backdrop-filter: blur(5px);
+            font-size: 1rem; text-transform: uppercase; letter-spacing: 4px;
+            color: var(--secondary-color); margin-bottom: 15px; opacity: 0.9;
+            border: 1px solid rgba(226, 183, 255, 0.3); padding: 8px 20px; border-radius: 20px;
+            background: rgba(176, 87, 245, 0.15); backdrop-filter: blur(5px);
             box-shadow: 0 0 15px rgba(176, 87, 245, 0.2);
         }
 
         .landing-content h1 {
-            font-family: 'Dancing Script', cursive; font-size: 5.5rem;
-            color: #fff;
+            font-family: 'Dancing Script', cursive; font-size: 5.5rem; color: #fff;
             text-shadow: 0 0 20px var(--primary-color), 0 0 40px rgba(176, 87, 245, 0.5);
             margin-bottom: 20px; animation: floatTitle 3s ease-in-out infinite;
         }
@@ -113,21 +105,16 @@
             font-weight: 600; font-size: 1.1rem; padding: 16px 45px;
             border: 2px solid var(--secondary-color); border-radius: 30px; cursor: pointer;
             text-transform: uppercase; letter-spacing: 1px;
-            box-shadow: 0 0 25px rgba(176, 87, 245, 0.5);
-            transition: all 0.4s ease;
+            box-shadow: 0 0 25px rgba(176, 87, 245, 0.5); transition: all 0.4s ease;
         }
         .btn-entrar:hover { 
-            background: transparent; 
-            color: var(--secondary-color); 
-            box-shadow: 0 0 35px var(--primary-color);
-            transform: translateY(-4px) scale(1.05); 
+            background: transparent; color: var(--secondary-color); 
+            box-shadow: 0 0 35px var(--primary-color); transform: translateY(-4px) scale(1.05); 
         }
         @keyframes floatTitle { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
 
-        /* --- GALERÍA DE CARTAS MEJORADA CON MÁS ANIMACIÓN --- */
-        #galleryScreen {
-            justify-content: flex-start;
-        }
+        /* --- GALERÍA DE CARTAS --- */
+        #galleryScreen { justify-content: flex-start; }
         .header { text-align: center; padding: 60px 20px 20px 20px; position: relative; z-index: 2; width: 100%; }
         .header h2 { 
             font-family: 'Dancing Script', cursive; font-size: 4rem; color: var(--secondary-color); 
@@ -152,39 +139,32 @@
         }
         .card-item.show { opacity: 1; transform: translateY(0); }
         
-        /* Decoración interna animada en las tarjetas */
-        .card-item::before { 
-            content: '🌷'; font-size: 3.5rem; opacity: 0.25; position: absolute; 
-            top: 15px; left: 15px; transition: all 0.5s ease; 
-        }
-        .card-item::after { 
-            content: '💜'; font-size: 2rem; opacity: 0.25; position: absolute; 
-            bottom: 15px; right: 20px; transition: all 0.5s ease; 
-        }
+        .card-item::before { content: '🌷'; font-size: 3.5rem; opacity: 0.25; position: absolute; top: 15px; left: 15px; transition: all 0.5s ease; }
+        .card-item::after { content: '💜'; font-size: 2rem; opacity: 0.25; position: absolute; bottom: 15px; right: 20px; transition: all 0.5s ease; }
 
         .card-item:hover { 
-            transform: translateY(-12px) scale(1.06); 
-            border-color: var(--secondary-color); 
+            transform: translateY(-12px) scale(1.06); border-color: var(--secondary-color); 
             background: rgba(63, 20, 102, 0.6);
             box-shadow: 0 20px 40px rgba(176, 87, 245, 0.5), inset 0 0 25px rgba(226, 183, 255, 0.3); 
         }
         .card-item:hover::before { opacity: 0.6; transform: scale(1.2) rotate(-10deg); }
         .card-item:hover::after { opacity: 0.6; transform: scale(1.3) rotate(15deg); }
 
-        .card-item span { 
-            font-family: 'Dancing Script', cursive; font-size: 2.5rem; z-index: 1; color: #fff; 
-            text-shadow: 0 0 12px rgba(0,0,0,0.8); transition: transform 0.3s ease;
-        }
+        .card-item span { font-family: 'Dancing Script', cursive; font-size: 2.5rem; z-index: 1; color: #fff; text-shadow: 0 0 12px rgba(0,0,0,0.8); transition: transform 0.3s ease; }
         .card-item:hover span { transform: scale(1.05); color: var(--secondary-color); }
-
-        .card-item small { 
-            font-size: 0.85rem; margin-top: 12px; z-index: 1; opacity: 0.85; 
-            text-transform: uppercase; color: var(--secondary-color); letter-spacing: 2px; 
-            transition: opacity 0.3s ease;
-        }
+        .card-item small { font-size: 0.85rem; margin-top: 12px; z-index: 1; opacity: 0.85; text-transform: uppercase; color: var(--secondary-color); letter-spacing: 2px; transition: opacity 0.3s ease; }
         .card-item:hover small { opacity: 1; }
 
-        /* --- MODAL ESTÁNDAR --- */
+        /* --- CLASES COMPARTIDAS MODALES --- */
+        .modal-body { display: flex; align-items: flex-start; gap: 40px; max-height: 75vh; overflow-y: auto; padding-right: 15px; }
+        .text-content { text-align: center; flex: 1; padding-bottom: 20px; }
+        .text-content p { font-size: 1.15rem; line-height: 1.7; margin-bottom: 20px; white-space: pre-line; color: #f3e8ff; }
+        .image-content { flex-shrink: 0; position: sticky; top: 0; display: flex; flex-direction: column; gap: 15px; } 
+        .image-content img { max-width: 350px; width: 100%; border-radius: 15px; border: 3px solid var(--image-border); object-fit: cover; box-shadow: 0 0 25px var(--glow); }
+        .close-button { position: absolute; top: 15px; right: 25px; font-size: 2.5rem; color: var(--secondary-color); cursor: pointer; transition: all 0.3s; z-index: 50; }
+        .close-button:hover { transform: rotate(90deg) scale(1.2); color: #fff; }
+
+        /* --- MODAL ESTÁNDAR (Mamá) --- */
         .modal-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(5, 1, 10, 0.85); display: flex; justify-content: center; align-items: center;
@@ -193,110 +173,99 @@
         .modal-container.active { opacity: 1; pointer-events: auto; }
         
         .modal-content-std {
-            background-color: var(--modal-bg); padding: 40px 50px; border-radius: 30px;
-            max-width: 900px; width: 90%; position: relative; overflow: hidden;
-            border: 1px solid rgba(176, 87, 245, 0.4);
-            --c1: #3a0ca3; --c2: #7209b7; --c3: #b5179e; --glow: rgba(176, 87, 245, 0.6);
-            box-shadow: 0 15px 50px var(--glow);
+            background-color: var(--modal-bg); padding: 40px 50px; border-radius: 30px; max-width: 900px; width: 90%; position: relative; overflow: hidden;
+            border: 1px solid rgba(176, 87, 245, 0.4); --glow: rgba(176, 87, 245, 0.6); box-shadow: 0 15px 50px var(--glow);
         }
-        
-        .modal-content-std::before {
-            content: ''; position: absolute; z-index: -1; top: -100%; left: -100%; width: 300%; height: 300%;
-            background: linear-gradient(-45deg, #120924, var(--c1), var(--c2), var(--c3));
-            animation: gradientBg 15s ease infinite;
-            opacity: 0.7;
-        }
-        
-        @keyframes gradientBg { 0% { transform: translate(0, 0); } 50% { transform: translate(5%, 5%); } 100% { transform: translate(0, 0); } }
+        .text-content-std h1 { font-family: 'Dancing Script', cursive; font-size: 3.2rem; margin-bottom: 25px; color: var(--secondary-color); text-shadow: 0 0 20px var(--glow); }
+        .text-content-std .signature { font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 30px; display: block; color: var(--secondary-color); }
 
-        .close-button {
-            position: absolute; top: 15px; right: 25px; font-size: 2.5rem; color: var(--secondary-color);
-            cursor: pointer; transition: all 0.3s; z-index: 50;
-        }
-        .close-button:hover { transform: rotate(90deg) scale(1.2); color: #fff; }
-        
-        /* Ajustado para permitir leer textos largos sin que se corten */
-        .modal-body { 
-            display: flex; 
-            align-items: flex-start; /* Alineación arriba para el scroll */
-            gap: 40px; 
-            max-height: 75vh; 
-            overflow-y: auto; 
-            padding-right: 15px; 
-        }
-        .text-content { text-align: center; flex: 1; padding-bottom: 20px; }
-        .text-content h1 { font-family: 'Dancing Script', cursive; font-size: 3.2rem; margin-bottom: 25px; color: var(--secondary-color); text-shadow: 0 0 20px var(--glow); }
-        .text-content p { font-size: 1.15rem; line-height: 1.7; margin-bottom: 20px; white-space: pre-line; color: #f3e8ff; }
-        .text-content .signature { font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 30px; display: block; color: var(--secondary-color); }
-        
-        .image-content { 
-            flex-shrink: 0; 
-            position: sticky; 
-            top: 0; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; /* Espacio entre las imágenes múltiples */
-        } 
-        
-        .image-content img {
-            max-width: 350px; width: 100%; border-radius: 15px;
-            border: 3px solid var(--image-border); object-fit: cover; box-shadow: 0 0 25px var(--glow);
-        }
-
-        /* --- ANIMACIÓN ÁRBOL Y CARTA DE OSCAR --- */
+        /* --- MODAL ESPECIAL OSCAR (Árbol) --- */
         #modalTreeContainer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, #0f031c, #1f0836, #000000);
             z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.8s ease;
         }
         #modalTreeContainer.active { opacity: 1; pointer-events: auto; }
+        #treeCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; }
         
-        #treeCanvas {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; display: block;
-        }
-
         .glass-letter {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -40%) scale(0.95);
-            width: 90%; max-width: 700px;
-            background: rgba(20, 8, 38, 0.65);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(176, 87, 245, 0.3);
-            border-radius: 25px;
-            padding: 40px 50px;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%) scale(0.95);
+            width: 90%; max-width: 700px; background: rgba(20, 8, 38, 0.65); backdrop-filter: blur(15px);
+            border: 1px solid rgba(176, 87, 245, 0.3); border-radius: 25px; padding: 40px 50px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 25px rgba(176, 87, 245, 0.2);
-            opacity: 0; pointer-events: none;
-            transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: center; z-index: 10;
-            max-height: 85vh; overflow-y: auto;
+            opacity: 0; pointer-events: none; transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center; z-index: 10; max-height: 85vh; overflow-y: auto;
+        }
+        .glass-letter.show-letter { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+        .glass-letter h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: var(--secondary-color); margin-bottom: 25px; text-shadow: 0 0 20px rgba(176, 87, 245, 0.8); }
+        .glass-letter img { max-width: 280px; width: 100%; border-radius: 15px; border: 2px solid rgba(226, 183, 255, 0.4); margin-bottom: 20px; object-fit: cover; }
+        .glass-letter p { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; line-height: 1.8; color: #f7efff; white-space: pre-line; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .glass-letter .signature { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: var(--secondary-color); display: block; margin-top: 35px; }
+
+        /* --- MODAL ESPECIAL CAMIL (Coquette / Aesthetic) --- */
+        .camil-content-box {
+            background: linear-gradient(135deg, #1d1326, #2d1a38);
+            padding: 50px 40px; border-radius: 15px; max-width: 950px; width: 90%; position: relative; overflow: hidden;
+            border: 4px double #a2b5d4; /* Simula encaje blanco/azul */
+            box-shadow: 0 15px 50px rgba(162, 181, 212, 0.3), inset 0 0 30px rgba(200, 100, 100, 0.1);
+            z-index: 10; margin: 0 auto;
         }
 
-        .glass-letter.show-letter {
-            opacity: 1; pointer-events: auto;
-            transform: translate(-50%, -50%) scale(1);
+        /* Simulación de encaje rojo/vintage a los lados */
+        .camil-content-box::before, .camil-content-box::after {
+            content: '🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀';
+            position: absolute; top: 0; bottom: 0; width: 30px;
+            display: flex; flex-direction: column; overflow: hidden;
+            font-size: 1.5rem; line-height: 1.5; opacity: 0.25; text-align: center; color: #c45b6b;
+            pointer-events: none;
+        }
+        .camil-content-box::before { left: 0; border-right: 2px dashed #c45b6b; background: rgba(196, 91, 107, 0.1); }
+        .camil-content-box::after { right: 0; border-left: 2px dashed #c45b6b; background: rgba(196, 91, 107, 0.1); }
+
+        .camil-bubble {
+            position: absolute; top: 25px; left: 50%; transform: translateX(-50%);
+            background: #fdfbf7; color: #555; padding: 10px 25px; border-radius: 20px;
+            font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 20;
+            animation: floatBubble 3s ease-in-out infinite; pointer-events: none;
+        }
+        .camil-bubble::after {
+            content: ''; position: absolute; bottom: -10px; left: 30px;
+            border-width: 10px 10px 0; border-style: solid; border-color: #fdfbf7 transparent transparent transparent;
+        }
+        
+        .camil-decor-element {
+            position: absolute; font-size: 3.5rem; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); z-index: 5;
+            animation: gentleFloat 4s ease-in-out infinite alternate; pointer-events: none;
+        }
+        .decor-cats { bottom: 20px; right: 50px; }
+        .decor-tulip { top: 40px; right: 40px; font-size: 4.5rem; animation-delay: 1s; }
+        .decor-camera { bottom: 30px; left: 50px; font-size: 3rem; animation-delay: 2s; }
+
+        .camil-star {
+            position: absolute; color: #a2b5d4; text-shadow: 0 0 8px rgba(255,255,255,0.8);
+            animation: starFall linear infinite; z-index: 1; pointer-events: none; opacity: 0;
         }
 
-        .glass-letter h1 {
-            font-family: 'Dancing Script', cursive; font-size: 3.5rem;
-            color: var(--secondary-color); margin-bottom: 25px; text-shadow: 0 0 20px rgba(176, 87, 245, 0.8);
+        #camilImageContainer img {
+            border: 8px solid #fdfbf7; /* Estilo polaroid */
+            border-bottom: 25px solid #fdfbf7;
+            border-radius: 5px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transform: rotate(3deg); transition: transform 0.4s ease;
         }
+        #camilImageContainer img:nth-child(even) { transform: rotate(-3deg); }
+        #camilImageContainer img:hover { transform: rotate(0deg) scale(1.05); z-index: 2; position: relative; }
 
-        .glass-letter img {
-            max-width: 280px; width: 100%; border-radius: 15px;
-            border: 2px solid rgba(226, 183, 255, 0.4);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(176, 87, 245, 0.4);
-            margin-bottom: 20px; object-fit: cover;
-        }
+        .text-content-camil h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin-bottom: 25px; color: #a2b5d4; text-shadow: 0 0 15px rgba(162, 181, 212, 0.6); }
+        .text-content-camil .signature { font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-top: 30px; display: block; color: #e2b7ff; }
 
-        .glass-letter p {
-            font-family: 'Montserrat', sans-serif; font-size: 1.1rem; line-height: 1.8;
-            color: #f7efff; white-space: pre-line; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
-        .glass-letter .signature {
-            font-family: 'Dancing Script', cursive; font-size: 2.2rem;
-            color: var(--secondary-color); display: block; margin-top: 35px; text-shadow: 0 0 15px rgba(176, 87, 245, 0.6);
+        @keyframes floatBubble { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -8px); } }
+        @keyframes gentleFloat { 0% { transform: translateY(0) rotate(-5deg); } 100% { transform: translateY(-15px) rotate(5deg); } }
+        @keyframes starFall { 
+            0% { transform: translateY(-50px) rotate(0deg) scale(0.5); opacity: 0; } 
+            15% { opacity: 0.9; }
+            85% { opacity: 0.9; }
+            100% { transform: translateY(100vh) rotate(360deg) scale(1.2); opacity: 0; } 
         }
 
         @media (max-width: 850px) {
@@ -306,6 +275,11 @@
             .glass-letter { padding: 30px 20px; }
             .glass-letter h1 { font-size: 2.5rem; }
             .glass-letter img { max-width: 220px; }
+            .camil-content-box { padding: 40px 20px; }
+            .camil-decor-element { font-size: 2rem; opacity: 0.5; } /* Decoraciones más sutiles en móvil */
+            .decor-tulip { font-size: 2.5rem; }
+            .camil-content-box::before, .camil-content-box::after { width: 15px; font-size: 0.8rem; }
+            .modal-body { margin-left: 15px; margin-right: 15px; }
         }
     </style>
 </head>
@@ -332,19 +306,17 @@
         <div class="cards-grid" id="cardsGrid"></div>
     </div>
 
-    <!-- MODAL ESTÁNDAR -->
+    <!-- MODAL ESTÁNDAR (Mamá) -->
     <div id="modalStandard" class="modal-container">
         <div id="modalBox" class="modal-content-std">
             <span class="close-button" onclick="closeModals()">×</span>
             <div class="modal-body">
-                <div class="text-content">
+                <div class="text-content text-content-std">
                     <h1 id="modalTitle">TÍTULO</h1>
                     <p id="modalText">Texto</p>
                     <span class="signature" id="modalSignature">Firma</span>
                 </div>
-                <div class="image-content" id="modalImageContainer">
-                    <!-- Las imágenes se inyectarán aquí -->
-                </div>
+                <div class="image-content" id="modalImageContainer"></div>
             </div>
         </div>
     </div>
@@ -355,11 +327,34 @@
         <div class="glass-letter" id="oscarGlassLetter">
             <span class="close-button" style="top: 15px; right: 25px;" onclick="closeTreeModal()">×</span>
             <h1 id="oscarTitle">TÍTULO</h1>
-            
             <img id="oscarImage" src="" alt="Nuestra foto">
-            
             <p id="oscarText">Texto</p>
             <span class="signature" id="oscarSignature">Firma</span>
+        </div>
+    </div>
+
+    <!-- MODAL ESPECIAL CAMIL -->
+    <div id="modalCamilContainer" class="modal-container">
+        <!-- Lluvia de estrellas de fondo -->
+        <div id="camilStarsContainer" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; pointer-events: none; overflow: hidden;"></div>
+        
+        <div class="camil-content-box">
+            <span class="close-button" style="z-index: 50;" onclick="closeCamilModal()">×</span>
+            
+            <!-- Decoraciones estéticas inspiradas en el collage -->
+            <div class="camil-bubble">I love you ♡ ˊˎ-</div>
+            <div class="camil-decor-element decor-cats">🐈‍⬛💕🐈</div>
+            <div class="camil-decor-element decor-tulip">🐱🌷</div>
+            <div class="camil-decor-element decor-camera">📸</div>
+            
+            <div class="modal-body" style="position: relative; z-index: 10; margin-top: 20px; margin-left: 20px; margin-right: 20px;">
+                <div class="text-content text-content-camil">
+                    <h1 id="camilTitle">TÍTULO</h1>
+                    <p id="camilText">Texto</p>
+                    <span class="signature" id="camilSignature">Firma</span>
+                </div>
+                <div class="image-content" id="camilImageContainer"></div>
+            </div>
         </div>
     </div>
 
@@ -415,7 +410,7 @@
                 title: "MI PASTELITO",
                 text: "Holiii mi pastelitooo, ¡mi linda, espero que estés súper y mega bien! Y si no es así, sabes que siempre estaré aquí para escucharte. No importa si no hemos hablado hace poco, sabes que si necesitas desahogarte siempre estaré ahí, como lo hemos estado todos estos años, estando la una para la otra.\n\nMuchas gracias por ser esa personita tan hermosa con la que en muchas ocasiones compartimos la misma neurona ajajja y eso me encantaaaa🙂‍↕️.\n\nAmo tu lado creativo  (me encantaaa y lo sabes, nunca dejare de decirtelo jsjsksk) y tu lado melancólico; son unos de tus tantos talentos que la verdad me sorprenden. Eres una de las personitas más creativas e ingeniosas que conozco, así que sigue adelante y cumple todos tus sueños. Yo sé que tú puedes; no va a ser algo de la noche a la mañana, pero sé que lo vas a lograr, ya que eres una personita demasiado inteligente y capaz. Sé que para ti no ha sido fácil llegar a donde estás, pero lo has hecho y de una manera excelente, por lo cual estoy muy orgullosa de ti y de la gran personita en la que te estás convirtiendo.\n\n¡Aaaay mi Lulu, eres mi escritora favorita! Por favor, sigamos escribiendo juntas la historia de wd jajaja, era uno de mis días más felices y emocionantes; obviamente la historia no va a tener la misma trama, pero de verdad era buena sjsjsjjs. No digo que lo vayamos a hacer ahora o mañana jajaja, sino que lo hagamos en algún momento nuevamente sjsjjs, extraño eso.\n\nY extraño pasar más tiempo juntas, nuestros días en el SENA me mal acostumbraron, te extraño mi linda dndjdkjd.\n\nMuchas gracias por todo 💜. Jajajaj no sé, tú sabes que mi especialidad es hablar de todo y de nada jajsj, y así despido esta pequeña carta (la cual sé que soy muy mala haciendo sjjsjs).\n\nTe amo muchote, mi Lulu, y te extraño aún más. Muchos besos y abrazos para esa linda, muaaaaaaa.",
                 signature: "Muchos besos y abrazos muaaaaaaa ! ?",
-                images: ["FOTO-CAMILA.jpeg", "FOTO-CAMILA2.jpeg"],
+                images: ["WhatsApp Image 2026-10-11 at 11.44.51 PM.jpeg", "WhatsApp Image 2026-10-11 at 11.44.51 PM (1).jpeg"],
                 theme: { c1: "#480ca8", c2: "#560bad", c3: "#b5179e", glow: "rgba(86, 11, 173, 0.8)" }
             }
         ];
@@ -445,28 +440,43 @@
             document.body.style.overflow = 'hidden'; 
 
             if (carta.id === 1) {
+                // MODAL OSCAR
                 document.getElementById('oscarTitle').textContent = carta.title;
                 document.getElementById('oscarImage').src = carta.images[0];
                 document.getElementById('oscarText').textContent = carta.text;
                 document.getElementById('oscarSignature').textContent = carta.signature;
-                
                 document.getElementById('modalTreeContainer').classList.add('active');
                 initTreeAnimation(); 
 
+            } else if (carta.id === 3) {
+                // MODAL CAMIL (Aesthetic / Coquette)
+                document.getElementById('camilTitle').textContent = carta.title;
+                document.getElementById('camilText').textContent = carta.text;
+                document.getElementById('camilSignature').textContent = carta.signature;
+                
+                const imageContainer = document.getElementById('camilImageContainer');
+                imageContainer.innerHTML = '';
+                carta.images.forEach(imgSrc => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imgSrc;
+                    imgElement.alt = "Imagen de Camil";
+                    imageContainer.appendChild(imgElement);
+                });
+
+                document.getElementById('modalCamilContainer').classList.add('active');
+                createCamilStars();
+
             } else {
+                // MODAL ESTÁNDAR (Mamá)
                 document.getElementById('modalTitle').textContent = carta.title;
                 document.getElementById('modalText').textContent = carta.text;
                 document.getElementById('modalSignature').textContent = carta.signature;
                 
-                // Limpiar imágenes previas
                 const imageContainer = document.getElementById('modalImageContainer');
                 imageContainer.innerHTML = '';
-                
-                // Añadir todas las imágenes de la carta
                 carta.images.forEach(imgSrc => {
                     const imgElement = document.createElement('img');
                     imgElement.src = imgSrc;
-                    imgElement.alt = "Imagen adjunta";
                     imageContainer.appendChild(imgElement);
                 });
 
@@ -486,9 +496,7 @@
         function closeModals() {
             document.getElementById('modalStandard').classList.remove('active');
             document.body.style.overflow = 'auto';
-            setTimeout(() => {
-                document.getElementById('modalImageContainer').innerHTML = '';
-            }, 400);
+            setTimeout(() => { document.getElementById('modalImageContainer').innerHTML = ''; }, 400);
         }
 
         function closeTreeModal() {
@@ -498,8 +506,35 @@
             cancelAnimationFrame(treeAnimationId); 
         }
 
+        function closeCamilModal() {
+            document.getElementById('modalCamilContainer').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+                document.getElementById('camilImageContainer').innerHTML = '';
+                document.getElementById('camilStarsContainer').innerHTML = '';
+            }, 400);
+        }
+
+        // Animación de estrellas para Camil
+        function createCamilStars() {
+            const container = document.getElementById('camilStarsContainer');
+            container.innerHTML = ''; 
+            for(let i=0; i<35; i++) {
+                let star = document.createElement('div');
+                star.className = 'camil-star';
+                star.innerHTML = Math.random() > 0.5 ? '★' : '✨';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.color = Math.random() > 0.5 ? '#a2b5d4' : '#ffffff'; // Estrellas azules o blancas
+                star.style.animationDuration = (Math.random() * 5 + 6) + 's';
+                star.style.animationDelay = (Math.random() * 4) + 's';
+                star.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+                container.appendChild(star);
+            }
+        }
+
         renderCards();
 
+        // Lógica del Árbol de Oscar
         const canvas = document.getElementById('treeCanvas');
         const ctx = canvas.getContext('2d');
         let allBranches = [];
@@ -510,40 +545,19 @@
         class Heart {
             constructor(x, y, delay) {
                 this.x = x; this.y = y; this.delay = delay;
-                this.size = 0;
-                this.targetSize = Math.random() * 0.8 + 0.6; 
+                this.size = 0; this.targetSize = Math.random() * 0.8 + 0.6; 
                 this.falling = Math.random() > 0.8;
-                this.vy = Math.random() * 1 + 0.5; 
-                this.vx = (Math.random() - 0.5) * 1;
+                this.vy = Math.random() * 1 + 0.5; this.vx = (Math.random() - 0.5) * 1;
                 this.sway = Math.random() * Math.PI * 2; 
             }
             draw() {
                 if (frameCount < this.delay) return; 
-                
-                if (this.size < this.targetSize) {
-                    this.size += 0.03;
-                } else if (this.falling) {
-                    this.y += this.vy;
-                    this.x += Math.sin(this.sway) * 0.5;
-                    this.sway += 0.05;
-                }
+                if (this.size < this.targetSize) { this.size += 0.03; } 
+                else if (this.falling) { this.y += this.vy; this.x += Math.sin(this.sway) * 0.5; this.sway += 0.05; }
 
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.scale(this.size, this.size);
-                
-                ctx.fillStyle = '#d8b4fe';
-                ctx.shadowColor = '#b057f5';
-                ctx.shadowBlur = 15;
-                
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.bezierCurveTo(0, -3, -5, -3, -5, 0);
-                ctx.bezierCurveTo(-5, 3, 0, 5, 0, 7);
-                ctx.bezierCurveTo(0, 5, 5, 3, 5, 0);
-                ctx.bezierCurveTo(5, -3, 0, -3, 0, 0);
-                ctx.fill();
-                ctx.restore();
+                ctx.save(); ctx.translate(this.x, this.y); ctx.scale(this.size, this.size);
+                ctx.fillStyle = '#d8b4fe'; ctx.shadowColor = '#b057f5'; ctx.shadowBlur = 15;
+                ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(0, -3, -5, -3, -5, 0); ctx.bezierCurveTo(-5, 3, 0, 5, 0, 7); ctx.bezierCurveTo(0, 5, 5, 3, 5, 0); ctx.bezierCurveTo(5, -3, 0, -3, 0, 0); ctx.fill(); ctx.restore();
             }
         }
 
@@ -552,87 +566,46 @@
             allBranches.push(branch);
             
             if (depth > 0) {
-                let endX = x + Math.cos(angle) * len;
-                let endY = y + Math.sin(angle) * len;
-                
+                let endX = x + Math.cos(angle) * len; let endY = y + Math.sin(angle) * len;
                 generateTreeData(endX, endY, angle - 0.3 - Math.random()*0.2, len * (0.75 + Math.random()*0.1), width * 0.7, depth - 1, delay + 20);
                 generateTreeData(endX, endY, angle + 0.3 + Math.random()*0.2, len * (0.75 + Math.random()*0.1), width * 0.7, depth - 1, delay + 20);
-                
-                if (Math.random() > 0.4) {
-                    generateTreeData(endX, endY, angle + (Math.random()-0.5)*0.3, len * 0.6, width * 0.6, depth - 1, delay + 20);
-                }
+                if (Math.random() > 0.4) generateTreeData(endX, endY, angle + (Math.random()-0.5)*0.3, len * 0.6, width * 0.6, depth - 1, delay + 20);
             } else {
-                let endX = x + Math.cos(angle) * len;
-                let endY = y + Math.sin(angle) * len;
+                let endX = x + Math.cos(angle) * len; let endY = y + Math.sin(angle) * len;
                 let numHearts = Math.floor(Math.random() * 3) + 2; 
                 for(let i = 0; i < numHearts; i++) {
-                    let hx = endX + (Math.random() - 0.5) * 20;
-                    let hy = endY + (Math.random() - 0.5) * 20;
+                    let hx = endX + (Math.random() - 0.5) * 20; let hy = endY + (Math.random() - 0.5) * 20;
                     allHearts.push(new Heart(hx, hy, delay + 10 + Math.random()*20));
                 }
             }
         }
 
         function initTreeAnimation() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            allBranches = [];
-            allHearts = [];
-            frameCount = 0;
-            
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            allBranches = []; allHearts = []; frameCount = 0;
             let isMobile = window.innerWidth < 600;
-            let startLen = isMobile ? 100 : 160;
-            let startWidth = isMobile ? 12 : 18;
-            let startY = isMobile ? canvas.height : canvas.height + 20;
-            
+            let startLen = isMobile ? 100 : 160; let startWidth = isMobile ? 12 : 18; let startY = isMobile ? canvas.height : canvas.height + 20;
             generateTreeData(canvas.width / 2, startY, -Math.PI / 2, startLen, startWidth, 6, 0);
-            
-            cancelAnimationFrame(treeAnimationId);
-            animateTree();
+            cancelAnimationFrame(treeAnimationId); animateTree();
         }
 
         function animateTree() {
-            ctx.fillStyle = 'rgba(15, 3, 28, 0.2)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+            ctx.fillStyle = 'rgba(15, 3, 28, 0.2)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.lineCap = 'round';
-            
             allBranches.forEach(b => {
                 if (frameCount >= b.delay) {
-                    if (b.currentLen < b.len) {
-                        b.currentLen += 2.5; 
-                    }
-                    let endX = b.x + Math.cos(b.angle) * b.currentLen;
-                    let endY = b.y + Math.sin(b.angle) * b.currentLen;
-                    
-                    ctx.beginPath();
-                    ctx.moveTo(b.x, b.y);
-                    ctx.lineTo(endX, endY);
-                    ctx.lineWidth = b.width;
-                    ctx.strokeStyle = '#e2b7ff';
-                    ctx.shadowColor = '#b057f5';
-                    ctx.shadowBlur = 10;
-                    ctx.stroke();
+                    if (b.currentLen < b.len) b.currentLen += 2.5; 
+                    let endX = b.x + Math.cos(b.angle) * b.currentLen; let endY = b.y + Math.sin(b.angle) * b.currentLen;
+                    ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo(endX, endY); ctx.lineWidth = b.width; ctx.strokeStyle = '#e2b7ff'; ctx.shadowColor = '#b057f5'; ctx.shadowBlur = 10; ctx.stroke();
                 }
             });
-
             allHearts.forEach(h => h.draw());
-
             frameCount++;
-            
-            if (frameCount === 180) {
-                document.getElementById('oscarGlassLetter').classList.add('show-letter');
-            }
-
+            if (frameCount === 180) document.getElementById('oscarGlassLetter').classList.add('show-letter');
             treeAnimationId = requestAnimationFrame(animateTree);
         }
 
-        window.addEventListener('resize', () => {
-            if(document.getElementById('modalTreeContainer').classList.contains('active')){
-                initTreeAnimation();
-            }
-        });
+        window.addEventListener('resize', () => { if(document.getElementById('modalTreeContainer').classList.contains('active')) initTreeAnimation(); });
     </script>
 </body>
 </html>
