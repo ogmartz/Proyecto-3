@@ -8,7 +8,8 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Se añadió Courier Prime para el efecto de máquina de escribir -->
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@700&family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -16,7 +17,6 @@
             --bg-gradient-bottom: #05010a;
             --primary-color: #b057f5;
             --secondary-color: #e2b7ff;
-            --accent-glow: rgba(176, 87, 245, 0.6);
             --text-color-light: #ffffff;
             --modal-bg: #120924;
             --image-border: rgba(226, 183, 255, 0.6);
@@ -29,8 +29,7 @@
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(to bottom, var(--bg-gradient-top), var(--bg-gradient-bottom));
             background-attachment: fixed; color: var(--text-color-light);
-            overflow-x: hidden;
-            position: relative;
+            overflow-x: hidden; position: relative;
         }
 
         /* --- DECORACIONES FLOTANTES FIJAS --- */
@@ -47,7 +46,6 @@
             20% { opacity: 0.4; } 80% { opacity: 0.4; }
             100% { transform: translate3d(0, -10vh, 0) rotate(360deg) scale(1.2); opacity: 0; }
         }
-
         .particle {
             position: absolute; background: rgba(226, 183, 255, 0.15); border-radius: 50%;
             animation: rise 8s infinite ease-in-out; will-change: transform, opacity; transform: translateZ(0);
@@ -97,14 +95,9 @@
         /* --- GALERÍA DE CARTAS --- */
         #galleryScreen { justify-content: flex-start; }
         .header { text-align: center; padding: 60px 20px 20px 20px; position: relative; z-index: 2; width: 100%; }
-        .header h2 { 
-            font-family: 'Dancing Script', cursive; font-size: 4rem; color: var(--secondary-color); 
-            text-shadow: 0 0 20px var(--primary-color), 0 0 40px rgba(176, 87, 245, 0.4); 
-            margin-bottom: 10px; animation: headerGlow 4s ease-in-out infinite alternate; will-change: text-shadow;
-        }
+        .header h2 { font-family: 'Dancing Script', cursive; font-size: 4rem; color: var(--secondary-color); text-shadow: 0 0 20px var(--primary-color), 0 0 40px rgba(176, 87, 245, 0.4); margin-bottom: 10px; animation: headerGlow 4s ease-in-out infinite alternate; will-change: text-shadow; }
         @keyframes headerGlow { 0% { text-shadow: 0 0 15px var(--primary-color); } 100% { text-shadow: 0 0 30px var(--secondary-color), 0 0 50px var(--primary-color); } }
         .header p { color: #d4b5ff; font-size: 1.1rem; letter-spacing: 1px; }
-        
         .cards-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 30px 40px 60px 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
         .card-item {
             background: rgba(43, 13, 71, 0.45); backdrop-filter: blur(10px); border: 2px solid rgba(176, 87, 245, 0.4); border-radius: 25px;
@@ -116,10 +109,7 @@
         .card-item.show { opacity: 1; transform: translateY(0); }
         .card-item::before { content: '🌷'; font-size: 3.5rem; opacity: 0.25; position: absolute; top: 15px; left: 15px; transition: all 0.5s ease; will-change: transform, opacity; }
         .card-item::after { content: '💜'; font-size: 2rem; opacity: 0.25; position: absolute; bottom: 15px; right: 20px; transition: all 0.5s ease; will-change: transform, opacity; }
-        .card-item:hover { 
-            transform: translateY(-12px) scale(1.06); border-color: var(--secondary-color); background: rgba(63, 20, 102, 0.6);
-            box-shadow: 0 20px 40px rgba(176, 87, 245, 0.5), inset 0 0 25px rgba(226, 183, 255, 0.3); 
-        }
+        .card-item:hover { transform: translateY(-12px) scale(1.06); border-color: var(--secondary-color); background: rgba(63, 20, 102, 0.6); box-shadow: 0 20px 40px rgba(176, 87, 245, 0.5), inset 0 0 25px rgba(226, 183, 255, 0.3); }
         .card-item:hover::before { opacity: 0.6; transform: scale(1.2) rotate(-10deg); }
         .card-item:hover::after { opacity: 0.6; transform: scale(1.3) rotate(15deg); }
         .card-item span { font-family: 'Dancing Script', cursive; font-size: 2.5rem; z-index: 1; color: #fff; text-shadow: 0 0 12px rgba(0,0,0,0.8); transition: transform 0.3s ease; will-change: transform;}
@@ -128,132 +118,240 @@
         .card-item:hover small { opacity: 1; }
 
         /* --- CLASES COMPARTIDAS MODALES --- */
-        .modal-body { display: flex; align-items: flex-start; gap: 40px; padding-right: 15px; }
+        .modal-body { display: flex; align-items: flex-start; gap: 40px; padding-right: 15px; position: relative; z-index: 2; }
         .text-content { text-align: center; flex: 1; padding-bottom: 20px; }
         .text-content p { font-size: 1.15rem; line-height: 1.7; margin-bottom: 20px; white-space: pre-line; color: #f3e8ff; }
         .image-content { flex-shrink: 0; position: sticky; top: 0; display: flex; flex-direction: column; gap: 15px; } 
         .image-content img { max-width: 350px; width: 100%; border-radius: 15px; border: 3px solid var(--image-border); object-fit: cover; box-shadow: 0 0 25px var(--glow); }
-        .close-button { position: absolute; top: 15px; right: 25px; font-size: 2.5rem; color: var(--secondary-color); cursor: pointer; transition: transform 0.3s, color 0.3s; z-index: 50; }
+        .close-button { position: absolute; top: 15px; right: 25px; font-size: 2.5rem; color: var(--secondary-color); cursor: pointer; transition: transform 0.3s, color 0.3s; z-index: 150; }
         .close-button:hover { transform: rotate(90deg) scale(1.2); color: #fff; }
 
         /* --- MODAL ESTÁNDAR (Mamá) --- */
         .modal-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(5, 1, 10, 0.85); display: flex; justify-content: center; align-items: center;
-            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; backdrop-filter: blur(8px);
-            will-change: opacity;
+            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; backdrop-filter: blur(8px); will-change: opacity;
         }
         .modal-container.active { opacity: 1; pointer-events: auto; }
         
         .modal-content-std {
             background-color: var(--modal-bg); padding: 40px 50px; border-radius: 30px; max-width: 900px; width: 90%; position: relative; overflow: hidden;
             border: 1px solid rgba(176, 87, 245, 0.4); --glow: rgba(176, 87, 245, 0.6); box-shadow: 0 15px 50px var(--glow);
-            max-height: 85vh; overflow-y: auto; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            will-change: transform;
+            max-height: 85vh; overflow-y: auto; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); will-change: transform;
         }
         .text-content-std h1 { font-family: 'Dancing Script', cursive; font-size: 3.2rem; margin-bottom: 25px; color: var(--secondary-color); text-shadow: 0 0 20px var(--glow); }
         .text-content-std .signature { font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 30px; display: block; color: var(--secondary-color); }
 
-        /* --- MODAL ESPECIAL OSCAR (Árbol Corazones) --- */
-        #modalTreeContainer {
+        /* --------------------------------------------------- */
+        /* --- MODAL ESPECIAL OSCAR (GALAXIA MÁGICA + VINTAGE) */
+        /* --------------------------------------------------- */
+        #modalGalaxyContainer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, #0f031c, #1f0836, #000000); z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.8s ease;
-            will-change: opacity;
+            background: #020005; z-index: 9999; opacity: 0; pointer-events: none; 
+            transition: opacity 0.8s ease; overflow: hidden; will-change: opacity;
         }
-        #modalTreeContainer.active { opacity: 1; pointer-events: auto; }
-        #treeCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; }
+        #modalGalaxyContainer.active { opacity: 1; pointer-events: auto; }
+        #galaxyCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; z-index: 0; }
         
-        .glass-letter {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%) scale(0.95);
-            width: 90%; max-width: 700px; background: rgba(20, 8, 38, 0.65); backdrop-filter: blur(15px);
-            border: 1px solid rgba(176, 87, 245, 0.3); border-radius: 25px; padding: 40px 50px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 25px rgba(176, 87, 245, 0.2);
-            opacity: 0; pointer-events: none; transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: center; z-index: 10; max-height: 85vh; overflow-y: auto; will-change: transform, opacity;
+        .galaxy-photo-container {
+            position: absolute;
+            top: 50%; left: 50%;
+            z-index: 5;
+            opacity: 0;
+            pointer-events: none;
+            border-radius: 12px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 2px solid transparent; 
+            will-change: transform, opacity, box-shadow;
         }
-        .glass-letter.show-letter { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
-        .glass-letter h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: var(--secondary-color); margin-bottom: 25px; text-shadow: 0 0 20px rgba(176, 87, 245, 0.8); }
-        .glass-letter img { max-width: 280px; width: 100%; border-radius: 15px; border: 2px solid rgba(226, 183, 255, 0.4); margin-bottom: 20px; object-fit: cover; }
-        .glass-letter p { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; line-height: 1.8; color: #f7efff; white-space: pre-line; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-        .glass-letter .signature { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: var(--secondary-color); display: block; margin-top: 35px; }
+        .galaxy-photo-container.visible {
+            pointer-events: auto; 
+        }
+        .galaxy-photo-container img {
+            max-width: 65vw;
+            max-height: 55vh;
+            border-radius: 8px;
+            display: block;
+            object-fit: contain;
+        }
+        
+        .oscar-content-box {
+            position: absolute; top: 50%; left: 50%; 
+            transform: translate(-50%, -50%) scale(0.85); 
+            max-width: 950px; width: 90%; height: 85vh;
+            perspective: 1500px; 
+            z-index: 10; opacity: 0; pointer-events: none;
+            transition: transform 4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 3.5s ease-in-out;
+            will-change: transform, opacity;
+        }
+        
+        .oscar-content-box.scale-up { transform: translate(-50%, -50%) scale(1); opacity: 1; pointer-events: auto; }
 
+        .oscar-cover {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #381a10, #1a0a05); 
+            border: 2px solid #b38b59; border-left: 20px solid #0f0502;
+            border-radius: 5px 25px 25px 5px;
+            box-shadow: inset -15px 0 40px rgba(0,0,0,0.9), 0 25px 60px rgba(0, 0, 0, 0.8);
+            transform-origin: left center; z-index: 100;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: transform 3.5s cubic-bezier(0.25, 1, 0.2, 1), opacity 2s ease 1s;
+            backface-visibility: hidden; will-change: transform, opacity;
+        }
+        .oscar-cover::before {
+            content: ''; position: absolute; top: 18px; right: 18px; bottom: 18px; left: 24px;
+            border: 2px solid rgba(212, 175, 55, 0.5); border-radius: 2px 14px 14px 2px; 
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+        .oscar-cover h2 { font-family: 'Dancing Script', cursive; font-size: 5rem; color: #e6ccab; text-shadow: 0 3px 10px rgba(0,0,0,0.9); z-index: 2; }
+        .oscar-cover span { font-size: 4rem; margin-top: 20px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.9)); z-index: 2;}
 
-        /* --- MODAL ESPECIAL CAMIL (Árbol Fresitas) --- */
+        .oscar-content-box.open-book .oscar-cover {
+            transform: rotateY(-115deg); opacity: 0; pointer-events: none;
+        }
+
+        .oscar-pages {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #f4e7d3, #d9bfa1, #c4a47c); 
+            border: 1px solid #a37c49; border-radius: 5px 25px 25px 5px;
+            padding: 50px 60px; overflow-y: auto; overflow-x: hidden;
+            box-shadow: inset 0 0 80px rgba(102, 60, 20, 0.6), inset 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .inner-decor { position: absolute; font-size: 2.5rem; opacity: 0.75; z-index: 1; pointer-events: none; animation: floatInner 6s ease-in-out infinite alternate; will-change: transform; filter: drop-shadow(0 5px 8px rgba(102, 60, 20, 0.6)); }
+        .inner-quill { top: 40px; right: 50px; font-size: 3.5rem; animation-duration: 5s; transform: rotate(15deg); }
+        .inner-note1 { bottom: 40px; left: 50px; animation-duration: 7s; animation-delay: 1s; }
+        .inner-note2 { top: 50%; right: 40px; font-size: 2rem; animation-duration: 4s; animation-delay: 2s; }
+        .inner-heart { bottom: 30px; right: 60px; font-size: 3rem; animation-duration: 6s; }
+        @keyframes floatInner { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(-20px) rotate(10deg); } }
+
+        .oscar-pages .close-button { color: #521c32; }
+        .oscar-pages .close-button:hover { color: #2c160a; }
+
+        .text-content-oscar h1 { 
+            font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.2rem; margin-bottom: 25px; 
+            color: #3b1f0f; text-shadow: 1px 1px 2px rgba(255,255,255,0.4); 
+            border-bottom: 2px solid #a37c49; padding-bottom: 10px; display: inline-block; letter-spacing: 2px; 
+        }
+        
+        /* NUEVA TIPOGRAFÍA: Máquina de Escribir */
+        .text-content-oscar p { 
+            font-family: 'Courier Prime', 'Courier New', Courier, monospace; 
+            font-size: 1.15rem; 
+            line-height: 1.8; 
+            color: #2c160a; 
+            text-align: left; 
+            position: relative; 
+            z-index: 2; 
+            font-weight: 400; 
+        }
+        .text-content-oscar p::first-letter { 
+            font-family: 'Courier Prime', monospace; 
+            font-size: 3.8rem; 
+            color: #521c32; 
+            float: left; 
+            line-height: 0.8; 
+            margin-right: 12px; 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2); 
+        }
+        .text-content-oscar .signature { font-family: 'Dancing Script', cursive; font-size: 3rem; display: block; margin-top: 40px; color: #521c32; text-align: right; padding-right: 20px; font-weight: 700; }
+        
+        /* ANIMACIÓN INTERACTIVA DE LA FOTO EN LA CARTA */
+        #oscarImageContainer {
+            position: relative; padding: 25px; background: linear-gradient(135deg, #2b1100, #4a2100);
+            border: 4px solid #d4af37; border-radius: 5px; box-shadow: 0 25px 40px rgba(0,0,0,0.7), inset 0 0 20px rgba(0,0,0,0.8); z-index: 2;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        #oscarImageContainer::before { content: ''; position: absolute; top: 10px; bottom: 10px; left: 10px; right: 10px; border: 2px dashed rgba(212, 175, 55, 0.6); pointer-events: none; border-radius: 2px; transition: border-color 0.4s ease; }
+        #oscarImageContainer img { 
+            border: 3px solid #1a0a00; border-radius: 3px; box-shadow: 0 10px 20px rgba(0,0,0,0.8); 
+            filter: sepia(0.6) contrast(1.15) brightness(0.9); 
+            position: relative; z-index: 2; display: block; width: 100%; 
+            transition: filter 0.6s ease, transform 0.6s ease, box-shadow 0.6s ease;
+        }
+        
+        /* Efecto Latido al pasar el cursor */
+        @keyframes heartbeatHover {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.04); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.04); }
+            70% { transform: scale(1); }
+        }
+        #oscarImageContainer:hover {
+            transform: scale(1.02) translateY(-5px);
+        }
+        #oscarImageContainer:hover img {
+            filter: sepia(0) contrast(1.05) brightness(1.05); /* Revela el color real */
+            animation: heartbeatHover 1.5s ease-in-out infinite; /* El corazón late */
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
+            border-color: #d4af37;
+        }
+        #oscarImageContainer:hover::before {
+            border-color: rgba(212, 175, 55, 1);
+        }
+
+        /* --------------------------------------------------- */
+        /* --- MODAL ESPECIAL CAMIL (Fresitas) --------------- */
+        /* --------------------------------------------------- */
         #modalCamilContainer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, #1d1326, #2d1a38, #0a0510);
-            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.8s ease;
-            will-change: opacity;
+            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.8s ease; will-change: opacity;
         }
         #modalCamilContainer.active { opacity: 1; pointer-events: auto; }
         #camilTreeCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; z-index: 0; }
         
         .camil-content-box {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%) scale(0.95);
-            background: linear-gradient(135deg, #1d1326, #2d1a38);
-            padding: 50px 40px; border-radius: 15px; max-width: 950px; width: 90%; 
+            background: linear-gradient(135deg, #1d1326, #2d1a38); padding: 50px 40px; border-radius: 15px; max-width: 950px; width: 90%; 
             border: 4px double #a2b5d4; box-shadow: 0 15px 50px rgba(162, 181, 212, 0.3), inset 0 0 30px rgba(220, 80, 110, 0.15);
             opacity: 0; pointer-events: none; transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 10; max-height: 85vh; overflow-y: auto; overflow-x: hidden;
-            will-change: transform, opacity;
+            z-index: 10; max-height: 85vh; overflow-y: auto; overflow-x: hidden; will-change: transform, opacity;
         }
         .camil-content-box.show-letter { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
-
-        .camil-content-box::before, .camil-content-box::after {
-            content: '🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓';
-            position: absolute; top: 0; bottom: 0; width: 30px; display: flex; flex-direction: column; overflow: hidden;
-            font-size: 1.4rem; line-height: 1.6; opacity: 0.3; text-align: center; color: #c45b6b; pointer-events: none;
-        }
+        .camil-content-box::before, .camil-content-box::after { content: '🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓'; position: absolute; top: 0; bottom: 0; width: 30px; display: flex; flex-direction: column; overflow: hidden; font-size: 1.4rem; line-height: 1.6; opacity: 0.3; text-align: center; color: #c45b6b; pointer-events: none; }
         .camil-content-box::before { left: 0; border-right: 2px dashed rgba(196, 91, 107, 0.4); background: rgba(196, 91, 107, 0.08); }
         .camil-content-box::after { right: 0; border-left: 2px dashed rgba(196, 91, 107, 0.4); background: rgba(196, 91, 107, 0.08); }
 
-        .camil-bubble {
-            position: absolute; top: 25px; left: 50%; transform: translateX(-50%);
-            background: #fdfbf7; color: #444; padding: 10px 25px; border-radius: 20px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1.1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 20; animation: floatBubble 3.5s ease-in-out infinite; pointer-events: none;
-            will-change: transform;
-        }
+        .camil-bubble { position: absolute; top: 25px; left: 50%; transform: translateX(-50%); background: #fdfbf7; color: #444; padding: 10px 25px; border-radius: 20px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1.1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 20; animation: floatBubble 3.5s ease-in-out infinite; pointer-events: none; will-change: transform; }
         .camil-bubble::after { content: ''; position: absolute; bottom: -10px; left: 30px; border-width: 10px 10px 0; border-style: solid; border-color: #fdfbf7 transparent transparent transparent; }
         
         .camil-decor-element { position: absolute; font-size: 3.5rem; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4)); z-index: 5; animation: gentleFloat 4s ease-in-out infinite alternate; pointer-events: none; will-change: transform; }
         .decor-cats { bottom: 20px; right: 50px; font-size: 4rem; }
         .decor-strawberry { top: 40px; right: 40px; font-size: 4.5rem; animation-delay: 1s; }
         .decor-camera { bottom: 30px; left: 50px; font-size: 3rem; animation-delay: 2s; }
-
         .camil-particle { position: absolute; text-shadow: 0 0 8px rgba(255,255,255,0.7); animation: starFall linear infinite; z-index: 1; pointer-events: none; opacity: 0; will-change: transform, opacity; transform: translateZ(0); }
-
-        #camilImageContainer img {
-            border: 8px solid #fdfbf7; border-bottom: 25px solid #fdfbf7; border-radius: 5px; box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-            transform: rotate(3deg); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            will-change: transform;
-        }
+        #camilImageContainer img { border: 8px solid #fdfbf7; border-bottom: 25px solid #fdfbf7; border-radius: 5px; box-shadow: 0 10px 25px rgba(0,0,0,0.6); transform: rotate(3deg); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); will-change: transform; }
         #camilImageContainer img:nth-child(even) { transform: rotate(-3deg); }
         #camilImageContainer img:hover { transform: rotate(0deg) scale(1.06); z-index: 2; position: relative; }
-
         .text-content-camil h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin-bottom: 25px; color: #a2b5d4; text-shadow: 0 0 15px rgba(162, 181, 212, 0.6); }
         .text-content-camil .signature { font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-top: 30px; display: block; color: #ffb7c5; text-shadow: 0 0 10px rgba(255,183,197,0.4); }
 
         @keyframes floatBubble { 0%, 100% { transform: translate3d(-50%, 0, 0); } 50% { transform: translate3d(-50%, -10px, 0); } }
         @keyframes gentleFloat { 0% { transform: translate3d(0,0,0) rotate(-4deg); } 100% { transform: translate3d(0,-12px,0) rotate(4deg); } }
-        @keyframes starFall { 
-            0% { transform: translate3d(0, -50px, 0) rotate(0deg) scale(0.5); opacity: 0; } 
-            15% { opacity: 0.9; } 85% { opacity: 0.9; } 100% { transform: translate3d(0, 100vh, 0) rotate(360deg) scale(1.1); opacity: 0; } 
-        }
+        @keyframes starFall { 0% { transform: translate3d(0, -50px, 0) rotate(0deg) scale(0.5); opacity: 0; } 15% { opacity: 0.9; } 85% { opacity: 0.9; } 100% { transform: translate3d(0, 100vh, 0) rotate(360deg) scale(1.1); opacity: 0; } }
 
         @media (max-width: 850px) {
             .modal-body { flex-direction: column; gap: 25px; align-items: center; }
             .image-content { position: relative; order: -1; } .image-content img { max-width: 250px; }
-            .glass-letter, .camil-content-box { padding: 30px 20px; } 
-            .glass-letter h1, .text-content-camil h1 { font-size: 2.5rem; } 
-            .glass-letter img { max-width: 220px; }
-            .camil-decor-element { font-size: 2rem; opacity: 0.7; } 
-            .decor-strawberry { font-size: 2.5rem; } 
+            .oscar-pages, .camil-content-box { padding: 30px 20px; } 
+            .oscar-cover h2 { font-size: 3.5rem; } .oscar-cover span { font-size: 2.5rem; }
+            .text-content-oscar h1, .text-content-camil h1 { font-size: 2.3rem; } 
+            .text-content-oscar p { font-size: 1.1rem; }
+            .inner-quill { font-size: 2.5rem; right: 20px; top: 20px; }
+            .inner-note1, .inner-note2 { font-size: 2rem; }
+            .camil-decor-element { font-size: 2rem; opacity: 0.7; } .decor-strawberry { font-size: 2.5rem; } 
             .camil-content-box::before, .camil-content-box::after { width: 15px; font-size: 0.8rem; }
+            .galaxy-photo-container img { max-width: 85vw; }
         }
     </style>
 </head>
 <body>
 
-    <!-- DECORACIONES FLOTANTES FIJAS -->
     <div class="floating-decorations" id="floatingDecor"></div>
     <div class="bg-decor" id="bgDecor"></div>
 
@@ -289,35 +387,49 @@
         </div>
     </div>
 
-    <!-- MODAL ESPECIAL OSCAR (Corazones) -->
-    <div id="modalTreeContainer">
-        <canvas id="treeCanvas"></canvas>
-        <div class="glass-letter" id="oscarGlassLetter">
-            <span class="close-button" style="top: 15px; right: 25px;" onclick="closeTreeModal()">×</span>
-            <h1 id="oscarTitle">TÍTULO</h1>
-            <img id="oscarImage" src="" alt="Nuestra foto">
-            <p id="oscarText">Texto</p>
-            <span class="signature" id="oscarSignature">Firma</span>
+    <!-- MODAL ESPECIAL OSCAR -->
+    <div id="modalGalaxyContainer">
+        <canvas id="galaxyCanvas"></canvas>
+        
+        <!-- Contenedor para las 5 pausas fotográficas estelares -->
+        <div id="galaxyPhotoContainer" class="galaxy-photo-container">
+            <img id="galaxyPhoto" src="" alt="Recuerdo estelar">
+        </div>
+        
+        <div class="oscar-content-box" id="oscarLetterBox">
+            <div class="oscar-cover" id="oscarBookCover">
+                <h2>Para Luisa</h2>
+                <span>🌌📖</span>
+            </div>
+            <div class="oscar-pages">
+                <span class="close-button" style="top: 15px; right: 25px;" onclick="closeGalaxyModal()">×</span>
+                <div class="inner-decor inner-quill">🪶</div>
+                <div class="inner-decor inner-note1">🎵🎶</div>
+                <div class="inner-decor inner-note2">🎼</div>
+                <div class="inner-decor inner-heart">💜✨</div>
+                <div class="modal-body">
+                    <div class="text-content text-content-oscar">
+                        <h1 id="oscarTitle">TÍTULO</h1>
+                        <p id="oscarText">Texto</p>
+                        <span class="signature" id="oscarSignature">Firma</span>
+                    </div>
+                    <!-- LA FOTO AHORA TIENE ANIMACIÓN INTERACTIVA AL PASAR EL CURSOR -->
+                    <div class="image-content" id="oscarImageContainer" title="Toca la foto para sentir el latido"></div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- MODAL ESPECIAL CAMIL (Fresitas) -->
+    <!-- MODAL ESPECIAL CAMIL -->
     <div id="modalCamilContainer">
-        <!-- Canvas para el Árbol de Fresas -->
         <canvas id="camilTreeCanvas"></canvas>
-        
-        <!-- Contenedor de partículas mágicas de fondo -->
         <div id="camilStarsContainer" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; pointer-events: none; overflow: hidden;"></div>
-        
-        <!-- CARTA EXPANDIDA (Contenido Real) -->
         <div class="camil-content-box" id="camilLetterBox">
             <span class="close-button" style="z-index: 50;" onclick="closeCamilModal()">×</span>
-            
             <div class="camil-bubble">I love you 🍓♡ ˊˎ-</div>
             <div class="camil-decor-element decor-cats">🐈‍⬛💕</div>
             <div class="camil-decor-element decor-strawberry">🍓🍰</div>
             <div class="camil-decor-element decor-camera">📸✨</div>
-            
             <div class="modal-body" style="position: relative; z-index: 10; margin-top: 20px; margin-left: 10px; margin-right: 10px;">
                 <div class="text-content text-content-camil">
                     <h1 id="camilTitle">TÍTULO</h1>
@@ -330,7 +442,7 @@
     </div>
 
     <script>
-        // Optimizaciones Generales y Datos
+        // Datos y Generales
         const floatingDecor = document.getElementById('floatingDecor');
         const decorSymbols = ['🌷', '🌸', '💐', '🧸', '💜', '✨', '🌹'];
         for (let i = 0; i < 16; i++) {
@@ -348,9 +460,17 @@
 
         const cartasData = [
             {
+                // NUEVO ESCRITO DE OSCAR
                 id: 1, author: "Oscar", title: "BAILA CONMIGO EL BAILE DE LA VIDA",
-                text: "Pensé que lo más hermoso que podía contemplar era el cielo estrellado de una noche oscura, hasta que descubrí constelaciones enteras latiendo en tu mirada, incluso a plena luz del día. Desde entonces, alzar la vista al cielo ya no tiene el mismo significado: el único universo que me atrapa y me deja sin palabras es el tuyo.\n\nNo sé si este pensamiento constante nace de tu ausencia en mi realidad o de lo mucho que habitas en mis sueños, pero tengo la certeza de que cada palabra que te escribo es un acierto. Al cerrar los ojos, la oscuridad no existe; el resplandor de tu alma ilumina cada rincón de la mía.\n\nEsa decisión marcó un cambio en mi vida maravilloso, me mostró que siempre vale la pena intentar una vez más, nuevamente te agradezco por llegar a mi vida y mostrarme lo maravillosa que es.\n\nGracias. Con amor Oscar.",
-                signature: "Te amo, Luisa 💜", images: ["NOSOTROS.jpg"]
+                text: "Luisa,\n\nSé que el camino ha sido difícil y que hemos atravesado momentos intranquilos donde a veces parece que solo queda la desesperación. Sin embargo, en medio de la tormenta, también sé que existe la esperanza y la paz. Estoy completamente seguro de ello porque lo veo reflejado en tus ojos, lo percibo en la calma de tu respiración y lo siento profundamente en tu pecho. Tus latidos son la prueba más sincera de todo esto. Es por esta razón que quiero darte la certeza de que, juntos, podemos superarlo absolutamente todo.\n\nAsí como siento el ritmo de tu corazón, también siento el mío, y cada pulsación me demuestra, sin lugar a dudas, que mi corazón te pertenece. Sigue latiendo con una fuerza inquebrantable, como si cada movimiento fuera un último suspiro por ti. A tu lado, cada latido se siente único y vital; eso es exactamente lo que ahora significa vivir para mí. Gracias a tu presencia, mi existencia ha encontrado un propósito verdadero.\n\nEs con esta misma seguridad que hoy te digo que te amo. Con esta absoluta firmeza te prometo que siempre estaré a tu lado, sosteniendo tu mano en cada paso del camino. No importa lo que el futuro nos depare ni las pruebas que tengamos que enfrentar, yo seguiré apoyándote incondicionalmente, porque elegirte ha sido la mejor decisión que he tomado jamás.\n\nEsa elección marcó un cambio maravilloso en mi historia. Tú me enseñaste a creer de nuevo, mostrándome que siempre vale la pena intentar una vez más y que el amor es un refugio seguro. Nuevamente, te doy las gracias por haber llegado a mi vida, por calmar mis miedos y por permitirme descubrir lo verdaderamente hermosa que es la vida cuando la comparto contigo.\n\nGracias, por tanto.",
+                signature: "Con todo mi amor, Oscar 💜", images: ["NOSOTROS.jpg"],
+                stellarPhotos: [
+                    "FOTO_PAUSA_1.jpg", 
+                    "FOTO_PAUSA_2.jpg", 
+                    "FOTO_PAUSA_3.jpg", 
+                    "FOTO_PAUSA_4.jpg", 
+                    "FOTO_PAUSA_5.jpg"
+                ]
             },
             {
                 id: 2, author: "Mamá", title: "MI LUZ BRILLANTE",
@@ -362,7 +482,7 @@
                 id: 3, author: "Camil", title: "MI PASTELITO",
                 text: "Holiii mi pastelitooo, ¡mi linda, espero que estés súper y mega bien! Y si no es así, sabes que siempre estaré aquí para escucharte. No importa si no hemos hablado hace poco, sabes que si necesitas desahogarte siempre estaré ahí, como lo hemos estado todos estos años, estando la una para la otra.\n\nMuchas gracias por ser esa personita tan hermosa con la que en muchas ocasiones compartimos la misma neurona ajajja y eso me encantaaaa🙂‍↕️.\n\nAmo tu lado creativo  (me encantaaa y lo sabes, nunca dejare de decirtelo jsjsksk) y tu lado melancólico; son unos de tus tantos talentos que la verdad me sorprenden. Eres una de las personitas más creativas e ingeniosas que conozco, así que sigue adelante y cumple todos tus sueños. Yo sé que tú puedes; no va a ser algo de la noche a la mañana, pero sé que lo vas a lograr, ya que eres una personita demasiado inteligente y capaz. Sé que para ti no ha sido fácil llegar a donde estás, pero lo has hecho y de una manera excelente, por lo cual estoy muy orgullosa de ti y de la gran personita en la que te estás convirtiendo.\n\n¡Aaaay mi Lulu, eres mi escritora favorita! Por favor, sigamos escribiendo juntas la historia de wd jajaja, era uno de mis días más felices y emocionantes; obviamente la historia no va a tener la misma trama, pero de verdad era buena sjsjsjjs. No digo que lo vayamos a hacer ahora o mañana jajaja, sino que lo hagamos en algún momento nuevamente sjsjjs, extraño eso.\n\nY extraño pasar más tiempo juntas, nuestros días en el SENA me mal acostumbraron, te extraño mi linda dndjdkjd.\n\nMuchas gracias por todo 💜. Jajajaj no sé, tú sabes que mi especialidad es hablar de todo y de nada jajsj, y así despido esta pequeña carta (la cual sé que soy muy mala haciendo sjjsjs).\n\nTe amo muchote, mi Lulu, y te extraño aún más. Muchos besos y abrazos para esa linda, muaaaaaaa.",
                 signature: "Muchos besos y abrazos muaaaaaaa ! ?", 
-                images: ["FOTO-CAMILA.jpeg", "FOTO-CAMILA2.jpeg"], // <-- Nombres actualizados
+                images: ["FOTO-CAMILA.jpeg", "FOTO-CAMILA2.jpeg"], 
                 theme: { c1: "#480ca8", c2: "#560bad", c3: "#b5179e", glow: "rgba(86, 11, 173, 0.8)" }
             }
         ];
@@ -388,16 +508,25 @@
             document.body.style.overflow = 'hidden'; 
 
             if (carta.id === 1) {
-                // MODAL OSCAR (Árbol Corazones)
+                // OSCAR
                 document.getElementById('oscarTitle').textContent = carta.title;
-                document.getElementById('oscarImage').src = carta.images[0];
                 document.getElementById('oscarText').textContent = carta.text;
                 document.getElementById('oscarSignature').textContent = carta.signature;
-                document.getElementById('modalTreeContainer').classList.add('active');
-                initTreeAnimation(); 
+                
+                const imageContainer = document.getElementById('oscarImageContainer');
+                imageContainer.innerHTML = `
+                    <span style="position:absolute; top: 1px; left: 6px; font-size: 1.8rem; color:#d4af37; filter: drop-shadow(0 0 5px rgba(212,175,55,0.6));">⚜️</span>
+                    <span style="position:absolute; top: 1px; right: 6px; font-size: 1.8rem; color:#d4af37; filter: drop-shadow(0 0 5px rgba(212,175,55,0.6));">⚜️</span>
+                    <span style="position:absolute; bottom: -2px; left: 6px; font-size: 1.8rem; color:#d4af37; filter: drop-shadow(0 0 5px rgba(212,175,55,0.6));">⚜️</span>
+                    <span style="position:absolute; bottom: -2px; right: 6px; font-size: 1.8rem; color:#d4af37; filter: drop-shadow(0 0 5px rgba(212,175,55,0.6));">⚜️</span>
+                    <img src="${carta.images[0]}" alt="Nosotros">
+                `;
+
+                document.getElementById('modalGalaxyContainer').classList.add('active');
+                initGalaxyWarpAnimation(); 
 
             } else if (carta.id === 3) {
-                // MODAL CAMIL (Árbol Fresitas)
+                // CAMIL
                 document.getElementById('camilTitle').textContent = carta.title;
                 document.getElementById('camilText').textContent = carta.text;
                 document.getElementById('camilSignature').textContent = carta.signature;
@@ -409,11 +538,10 @@
                 });
 
                 document.getElementById('modalCamilContainer').classList.add('active');
-                createCamilStars();
-                initCamilTreeAnimation(); 
+                createCamilStars(); initCamilTreeAnimation(); 
 
             } else {
-                // MODAL ESTÁNDAR (Mamá)
+                // MAMÁ
                 document.getElementById('modalTitle').textContent = carta.title;
                 document.getElementById('modalText').textContent = carta.text;
                 document.getElementById('modalSignature').textContent = carta.signature;
@@ -436,123 +564,362 @@
             setTimeout(() => { document.getElementById('modalImageContainer').innerHTML = ''; }, 400);
         }
 
-        function closeTreeModal() {
-            document.getElementById('modalTreeContainer').classList.remove('active'); document.getElementById('oscarGlassLetter').classList.remove('show-letter');
-            document.body.style.overflow = 'auto'; cancelAnimationFrame(treeAnimationId); 
+        function closeGalaxyModal() {
+            document.getElementById('modalGalaxyContainer').classList.remove('active'); 
+            document.getElementById('oscarLetterBox').classList.remove('scale-up', 'open-book');
+            
+            // Limpiar contenedor de fotos y partículas estelares
+            const photoContainer = document.getElementById('galaxyPhotoContainer');
+            photoContainer.classList.remove('visible');
+            photoContainer.style.opacity = 0;
+            photoTrailParticles = [];
+            
+            document.body.style.overflow = 'auto'; cancelAnimationFrame(galaxyAnimationId); 
+            setTimeout(() => { document.getElementById('oscarImageContainer').innerHTML = ''; }, 800);
         }
 
         function closeCamilModal() {
             document.getElementById('modalCamilContainer').classList.remove('active'); 
             document.getElementById('camilLetterBox').classList.remove('show-letter');
             document.body.style.overflow = 'auto'; cancelAnimationFrame(camilTreeAnimationId);
-            setTimeout(() => {
-                document.getElementById('camilImageContainer').innerHTML = '';
-                document.getElementById('camilStarsContainer').innerHTML = '';
-            }, 800);
+            setTimeout(() => { document.getElementById('camilImageContainer').innerHTML = ''; document.getElementById('camilStarsContainer').innerHTML = ''; }, 800);
         }
 
-        // Partículas Mágicas (Camil) optimizadas
+        // -----------------------------------------------------
+        // ANIMACIÓN OSCAR: VIAJE MULTICAPA (Constelaciones, Nebulosas, Bokeh)
+        // -----------------------------------------------------
+        const galCanvas = document.getElementById('galaxyCanvas'); 
+        const gctx = galCanvas.getContext('2d', { alpha: false });
+        let galaxyAnimationId; let galFrameCount = 0;
+        
+        let warpStars = []; 
+        let nebulas = [];
+        let comets = [];
+        let bokehParticles = [];
+        let photoTrailParticles = []; 
+        const numWarpStars = 2500; 
+        
+        const warmColors = ['#FFD700', '#FFA500', '#FF8C00', '#FFF8DC', '#FFE4B5', '#e2b7ff'];
+        const nebulaColors = ['rgba(75, 0, 130, 0.08)', 'rgba(139, 0, 0, 0.06)', 'rgba(255, 140, 0, 0.05)', 'rgba(148, 0, 211, 0.07)'];
+
+        function initGalaxyWarpAnimation() {
+            galCanvas.width = window.innerWidth; galCanvas.height = window.innerHeight;
+            warpStars = []; nebulas = []; comets = []; bokehParticles = []; photoTrailParticles = [];
+            galFrameCount = 0; 
+
+            // 1. Crear Estrellas base
+            for(let i=0; i<numWarpStars; i++) {
+                warpStars.push({
+                    x: (Math.random() - 0.5) * 4000, 
+                    y: (Math.random() - 0.5) * 4000, 
+                    z: Math.random() * 2000 + 100, 
+                    color: warmColors[Math.floor(Math.random() * warmColors.length)],
+                    size: Math.random() * 2 + 0.5,
+                    twinkleSpeed: Math.random() * 0.05 + 0.01,
+                    twinklePhase: Math.random() * Math.PI * 2,
+                    isNode: i < 70 
+                });
+            }
+
+            // 2. Crear Nebulosas de fondo (Gas cósmico)
+            for(let i=0; i<5; i++) {
+                nebulas.push({
+                    x: Math.random() * galCanvas.width,
+                    y: Math.random() * galCanvas.height,
+                    r: Math.random() * 600 + 400,
+                    color: nebulaColors[Math.floor(Math.random() * nebulaColors.length)],
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5
+                });
+            }
+
+            // 3. Crear partículas Bokeh (Primer plano borroso)
+            for(let i=0; i<25; i++) {
+                bokehParticles.push({
+                    x: Math.random() * galCanvas.width, y: Math.random() * galCanvas.height,
+                    r: Math.random() * 40 + 20,
+                    color: warmColors[Math.floor(Math.random() * warmColors.length)],
+                    vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5,
+                    opacity: Math.random() * 0.15 + 0.05
+                });
+            }
+            
+            cancelAnimationFrame(galaxyAnimationId); animateGalaxyWarp();
+        }
+
+        function animateGalaxyWarp() {
+            // Fondo base oscuro romántico
+            gctx.fillStyle = 'rgba(10, 2, 12, 0.4)'; 
+            gctx.fillRect(0, 0, galCanvas.width, galCanvas.height);
+            
+            const centerX = galCanvas.width / 2; 
+            const centerY = galCanvas.height / 2;
+            
+            // --- DIBUJAR NEBULOSAS ---
+            gctx.globalCompositeOperation = 'screen';
+            nebulas.forEach(neb => {
+                let grad = gctx.createRadialGradient(neb.x, neb.y, 0, neb.x, neb.y, neb.r);
+                grad.addColorStop(0, neb.color); grad.addColorStop(1, 'transparent');
+                gctx.fillStyle = grad; gctx.beginPath(); gctx.arc(neb.x, neb.y, neb.r, 0, Math.PI*2); gctx.fill();
+                neb.x += neb.vx; neb.y += neb.vy;
+                if(neb.x < -neb.r) neb.x = galCanvas.width + neb.r; if(neb.x > galCanvas.width + neb.r) neb.x = -neb.r;
+                if(neb.y < -neb.r) neb.y = galCanvas.height + neb.r; if(neb.y > galCanvas.height + neb.r) neb.y = -neb.r;
+            });
+            gctx.globalCompositeOperation = 'source-over';
+
+            let globalRotation = galFrameCount * 0.0012; 
+            
+            let coreRadius = 0; let coreOpacity = 1;
+            let driftSpeed = 1;
+            
+            // --- CONFIGURACIÓN DEL VIAJE Y LAS FOTOS ---
+            const framesPerTravel = 150; 
+            const framesPerPause = 240;  
+            const cycleDuration = framesPerTravel + framesPerPause;
+            const totalPauses = 5;
+            const totalIntroFrames = totalPauses * cycleDuration;
+            
+            const photoContainer = document.getElementById('galaxyPhotoContainer');
+            const photoImg = document.getElementById('galaxyPhoto');
+
+            const travelPaths = [
+                { sx: -15, sy: -20, ex: 10, ey: -5, color: '#FFD700' }, 
+                { sx: 20, sy: 15, ex: -10, ey: 20, color: '#e2b7ff' },  
+                { sx: -20, sy: 15, ex: 5, ey: 5, color: '#00ffff' },    
+                { sx: 15, sy: -20, ex: -15, ey: -5, color: '#ff69b4' }, 
+                { sx: -5, sy: -15, ex: 5, ey: 10, color: '#ffffff' }    
+            ];
+            
+            if (galFrameCount < totalIntroFrames) {
+                let cycleIndex = Math.floor(galFrameCount / cycleDuration); 
+                let frameInCycle = galFrameCount % cycleDuration;
+                let currentPath = travelPaths[cycleIndex];
+                
+                if (frameInCycle < framesPerTravel) {
+                    // Salto hiperespacial entre fotos
+                    let t = frameInCycle / framesPerTravel;
+                    driftSpeed = 4 + Math.sin(t * Math.PI) * 16; 
+                    photoContainer.style.opacity = 0;
+                    photoContainer.classList.remove('visible');
+                } else {
+                    // Contemplando la foto MIENTRAS se sigue avanzando apasionadamente
+                    driftSpeed = 4; 
+                    let pauseFrame = frameInCycle - framesPerTravel;
+                    let tPause = pauseFrame / framesPerPause;
+                    
+                    if (!photoContainer.classList.contains('visible')) {
+                        const oscarData = cartasData.find(c => c.id === 1);
+                        photoImg.src = oscarData.stellarPhotos[cycleIndex];
+                        photoContainer.classList.add('visible');
+                        
+                        photoContainer.style.borderColor = currentPath.color;
+                        photoContainer.style.boxShadow = `0 0 30px ${currentPath.color}, 0 0 60px ${currentPath.color}88`;
+                    }
+
+                    let currentX = (currentPath.sx + (currentPath.ex - currentPath.sx) * tPause) * (galCanvas.width / 100);
+                    let currentY = (currentPath.sy + (currentPath.ey - currentPath.sy) * tPause) * (galCanvas.height / 100);
+                    let currentScale = 0.65 + (tPause * 0.35);
+
+                    let photoOpacity = 1;
+                    if (pauseFrame < 30) photoOpacity = pauseFrame / 30; 
+                    else if (pauseFrame > framesPerPause - 30) photoOpacity = (framesPerPause - pauseFrame) / 30; 
+                    
+                    photoContainer.style.opacity = photoOpacity;
+                    photoContainer.style.transform = `translate(-50%, -50%) translate3d(${currentX}px, ${currentY}px, 0) scale(${currentScale})`;
+
+                    if (photoOpacity > 0.2) {
+                        for(let k=0; k<2; k++) {
+                            photoTrailParticles.push({
+                                x: centerX + currentX + (Math.random()-0.5) * 80, 
+                                y: centerY + currentY + (Math.random()-0.5) * 80,
+                                vx: (Math.random() - 0.5) * 1.5, 
+                                vy: (Math.random() - 0.5) * 1.5,
+                                life: 1,
+                                maxLife: Math.random() * 40 + 20,
+                                color: currentPath.color,
+                                size: Math.random() * 5 + 2
+                            });
+                        }
+                    }
+                }
+                coreOpacity = 0; 
+                
+            } else {
+                // FASE FINAL: Viaje hacia el libro
+                let finalFrame = galFrameCount - totalIntroFrames;
+                photoContainer.style.opacity = 0;
+                photoContainer.classList.remove('visible');
+                
+                if (finalFrame < framesPerTravel) {
+                    let t = finalFrame / framesPerTravel;
+                    driftSpeed = 2 + Math.sin(t * Math.PI) * 12; 
+                } else {
+                    driftSpeed = 0.5; 
+                }
+
+                if (finalFrame <= 200) {
+                    let t = finalFrame / 200;
+                    coreRadius = t * 900;
+                    coreOpacity = 1;
+                } else {
+                    coreRadius = 900;
+                    let t = Math.min(1, (finalFrame - 200) / 150);
+                    coreOpacity = 1 - t;
+                }
+                
+                if (coreOpacity > 0) {
+                    let coreGlow = gctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, coreRadius);
+                    coreGlow.addColorStop(0, `rgba(255, 255, 255, ${0.9 * coreOpacity})`); 
+                    coreGlow.addColorStop(0.2, `rgba(255, 215, 0, ${0.7 * coreOpacity})`); 
+                    coreGlow.addColorStop(0.5, `rgba(255, 140, 0, ${0.3 * coreOpacity})`); 
+                    coreGlow.addColorStop(1, `rgba(255, 140, 0, 0)`); 
+                    
+                    gctx.fillStyle = coreGlow; gctx.beginPath(); gctx.arc(centerX, centerY, coreRadius, 0, Math.PI*2); gctx.fill();
+                }
+                
+                if(finalFrame === framesPerTravel + 50) { document.getElementById('oscarLetterBox').classList.add('scale-up'); }
+                if(finalFrame === framesPerTravel + 250) { document.getElementById('oscarLetterBox').classList.add('open-book'); }
+            }
+
+            // --- DIBUJAR RASTRO DE LAS FOTOS ESTELARES ---
+            gctx.globalCompositeOperation = 'screen';
+            for (let i = photoTrailParticles.length - 1; i >= 0; i--) {
+                let p = photoTrailParticles[i];
+                p.x += p.vx; p.y += p.vy; p.life++;
+                if (p.life >= p.maxLife) { photoTrailParticles.splice(i, 1); continue; }
+                
+                let opacity = 1 - (p.life / p.maxLife);
+                gctx.beginPath();
+                gctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                gctx.fillStyle = p.color;
+                gctx.globalAlpha = opacity;
+                gctx.fill(); 
+            }
+            gctx.globalCompositeOperation = 'source-over';
+            gctx.globalAlpha = 1;
+
+            let projectedNodes = [];
+
+            // --- DIBUJAR ESTRELLAS ---
+            warpStars.forEach((star, index) => {
+                star.z -= driftSpeed;
+                
+                if (star.z <= 0) {
+                    star.z = 2000;
+                    star.x = (Math.random() - 0.5) * 4000;
+                    star.y = (Math.random() - 0.5) * 4000;
+                }
+
+                let rx = Math.cos(globalRotation) * star.x - Math.sin(globalRotation) * star.y;
+                let ry = Math.sin(globalRotation) * star.x + Math.cos(globalRotation) * star.y;
+
+                let px = (rx / star.z) * 800 + centerX;
+                let py = (ry / star.z) * 800 + centerY;
+                
+                let size = Math.max(0.1, (1 - star.z / 2000) * star.size * 2.5); 
+
+                if(star.isNode && star.z > 100 && star.z < 1500) {
+                    projectedNodes.push({x: px, y: py});
+                }
+
+                gctx.beginPath();
+                let twinkleAlpha = 0.4 + 0.6 * Math.abs(Math.sin(galFrameCount * star.twinkleSpeed + star.twinklePhase));
+
+                gctx.arc(px, py, size, 0, Math.PI*2); 
+                gctx.fillStyle = star.color; 
+                gctx.globalAlpha = twinkleAlpha;
+                gctx.fill();
+            });
+
+            gctx.globalAlpha = 1;
+
+            // --- DIBUJAR CONSTELACIONES ---
+            gctx.lineWidth = 0.5;
+            for(let i=0; i<projectedNodes.length; i++) {
+                for(let j=i+1; j<projectedNodes.length; j++) {
+                    let dx = projectedNodes[i].x - projectedNodes[j].x;
+                    let dy = projectedNodes[i].y - projectedNodes[j].y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if(dist < 120) { 
+                        gctx.beginPath();
+                        gctx.moveTo(projectedNodes[i].x, projectedNodes[i].y);
+                        gctx.lineTo(projectedNodes[j].x, projectedNodes[j].y);
+                        let lineAlpha = (1 - dist/120) * 0.3 * Math.abs(Math.sin(galFrameCount*0.02 + i));
+                        gctx.strokeStyle = `rgba(255, 215, 0, ${lineAlpha})`;
+                        gctx.stroke();
+                    }
+                }
+            }
+
+            // --- ESTRELLAS FUGACES ---
+            if(Math.random() < 0.015 && driftSpeed < 4) { 
+                comets.push({
+                    x: Math.random() * galCanvas.width, y: 0,
+                    vx: Math.random() * 10 - 5, vy: Math.random() * 10 + 5,
+                    life: 1, maxLife: Math.random() * 50 + 50,
+                    size: Math.random() * 2 + 1
+                });
+            }
+
+            for(let i = comets.length - 1; i >= 0; i--) {
+                let c = comets[i];
+                c.x += c.vx; c.y += c.vy; c.life++;
+                
+                let opacity = 1 - (c.life / c.maxLife);
+                if(opacity <= 0) { comets.splice(i, 1); continue; }
+
+                let tailX = c.x - c.vx * 15; let tailY = c.y - c.vy * 15;
+                
+                let grad = gctx.createLinearGradient(c.x, c.y, tailX, tailY);
+                grad.addColorStop(0, `rgba(255, 255, 255, ${opacity})`);
+                grad.addColorStop(0.2, `rgba(255, 215, 0, ${opacity * 0.8})`);
+                grad.addColorStop(1, 'transparent');
+
+                gctx.beginPath(); gctx.moveTo(tailX, tailY); gctx.lineTo(c.x, c.y);
+                gctx.lineWidth = c.size; gctx.strokeStyle = grad; gctx.lineCap = 'round'; gctx.stroke();
+            }
+
+            // --- BOKEH ---
+            bokehParticles.forEach(p => {
+                gctx.beginPath();
+                gctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+                gctx.fillStyle = p.color;
+                gctx.globalAlpha = p.opacity * (0.5 + 0.5 * Math.sin(galFrameCount * 0.05 + p.r));
+                gctx.fill(); 
+                p.x += p.vx; p.y += p.vy;
+                if(p.x < -100) p.x = galCanvas.width + 100; if(p.x > galCanvas.width + 100) p.x = -100;
+                if(p.y < -100) p.y = galCanvas.height + 100; if(p.y > galCanvas.height + 100) p.y = -100;
+            });
+            gctx.globalAlpha = 1;
+
+            galFrameCount++;
+            galaxyAnimationId = requestAnimationFrame(animateGalaxyWarp);
+        }
+
+        // -----------------------------------------------------
+        // ÁRBOL DE CAMIL (Fresitas)
+        // -----------------------------------------------------
         function createCamilStars() {
             const container = document.getElementById('camilStarsContainer'); container.innerHTML = ''; 
             const particles = ['🍓', '✨', '🎀', '🌸', '✨', '🍓']; 
             for(let i=0; i<35; i++) {
-                let p = document.createElement('div'); p.className = 'camil-particle';
-                p.innerHTML = particles[Math.floor(Math.random() * particles.length)];
-                p.style.left = Math.random() * 100 + '%'; 
-                p.style.color = Math.random() > 0.5 ? '#a2b5d4' : '#ffffff';
-                p.style.animationDuration = (Math.random() * 4 + 5) + 's'; 
-                p.style.animationDelay = (Math.random() * 3) + 's';
-                p.style.fontSize = (Math.random() * 1.5 + 1) + 'rem'; 
-                container.appendChild(p);
+                let p = document.createElement('div'); p.className = 'camil-particle'; p.innerHTML = particles[Math.floor(Math.random() * particles.length)];
+                p.style.left = Math.random() * 100 + '%'; p.style.color = Math.random() > 0.5 ? '#a2b5d4' : '#ffffff';
+                p.style.animationDuration = (Math.random() * 4 + 5) + 's'; p.style.animationDelay = (Math.random() * 3) + 's'; p.style.fontSize = (Math.random() * 1.5 + 1) + 'rem'; container.appendChild(p);
             }
         }
 
-        renderCards();
-
-        // -----------------------------------------------------
-        // ÁRBOL DE OSCAR (Corazones morados)
-        // -----------------------------------------------------
-        const canvas = document.getElementById('treeCanvas'); const ctx = canvas.getContext('2d', { alpha: false });
-        let allBranches = []; let allHearts = []; let frameCount = 0; let treeAnimationId;
-
-        class Heart {
-            constructor(x, y, delay) {
-                this.x = x; this.y = y; this.delay = delay; this.size = 0; this.targetSize = Math.random() * 0.8 + 0.6; 
-                this.falling = Math.random() > 0.8; this.vy = Math.random() * 1 + 0.5; this.vx = (Math.random() - 0.5) * 1; this.sway = Math.random() * Math.PI * 2; 
-            }
-            draw() {
-                if (frameCount < this.delay) return; 
-                if (this.size < this.targetSize) { this.size += 0.03; } else if (this.falling) { this.y += this.vy; this.x += Math.sin(this.sway) * 0.5; this.sway += 0.05; }
-                ctx.save(); ctx.translate(this.x, this.y); ctx.scale(this.size, this.size); ctx.fillStyle = '#d8b4fe'; ctx.shadowColor = '#b057f5'; ctx.shadowBlur = 15;
-                ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(0, -3, -5, -3, -5, 0); ctx.bezierCurveTo(-5, 3, 0, 5, 0, 7); ctx.bezierCurveTo(0, 5, 5, 3, 5, 0); ctx.bezierCurveTo(5, -3, 0, -3, 0, 0); ctx.fill(); ctx.restore();
-            }
-        }
-
-        function generateTreeData(x, y, angle, len, width, depth, delay) {
-            let branch = { x, y, angle, len, width, currentLen: 0, delay }; allBranches.push(branch);
-            if (depth > 0) {
-                let endX = x + Math.cos(angle) * len; let endY = y + Math.sin(angle) * len;
-                generateTreeData(endX, endY, angle - 0.3 - Math.random()*0.2, len * (0.75 + Math.random()*0.1), width * 0.7, depth - 1, delay + 20);
-                generateTreeData(endX, endY, angle + 0.3 + Math.random()*0.2, len * (0.75 + Math.random()*0.1), width * 0.7, depth - 1, delay + 20);
-                if (Math.random() > 0.4) generateTreeData(endX, endY, angle + (Math.random()-0.5)*0.3, len * 0.6, width * 0.6, depth - 1, delay + 20);
-            } else {
-                let endX = x + Math.cos(angle) * len; let endY = y + Math.sin(angle) * len; let numHearts = Math.floor(Math.random() * 3) + 2; 
-                for(let i = 0; i < numHearts; i++) { let hx = endX + (Math.random() - 0.5) * 20; let hy = endY + (Math.random() - 0.5) * 20; allHearts.push(new Heart(hx, hy, delay + 10 + Math.random()*20)); }
-            }
-        }
-
-        function initTreeAnimation() {
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight; allBranches = []; allHearts = []; frameCount = 0;
-            let isMobile = window.innerWidth < 600; let startLen = isMobile ? 100 : 160; let startWidth = isMobile ? 12 : 18; let startY = isMobile ? canvas.height : canvas.height + 20;
-            
-            // Dibujar fondo estático inicialmente (optimización alpha:false)
-            ctx.fillStyle = '#0f031c'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            generateTreeData(canvas.width / 2, startY, -Math.PI / 2, startLen, startWidth, 6, 0); cancelAnimationFrame(treeAnimationId); animateTree();
-        }
-
-        function animateTree() {
-            // Capa semitransparente para efecto trail
-            ctx.fillStyle = 'rgba(15, 3, 28, 0.2)'; ctx.fillRect(0, 0, canvas.width, canvas.height); ctx.lineCap = 'round';
-            allBranches.forEach(b => {
-                if (frameCount >= b.delay) {
-                    if (b.currentLen < b.len) b.currentLen += 2.5; 
-                    let endX = b.x + Math.cos(b.angle) * b.currentLen; let endY = b.y + Math.sin(b.angle) * b.currentLen;
-                    ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo(endX, endY); ctx.lineWidth = b.width; ctx.strokeStyle = '#e2b7ff'; ctx.shadowColor = '#b057f5'; ctx.shadowBlur = 10; ctx.stroke();
-                }
-            });
-            allHearts.forEach(h => h.draw()); frameCount++;
-            if (frameCount === 180) document.getElementById('oscarGlassLetter').classList.add('show-letter');
-            treeAnimationId = requestAnimationFrame(animateTree);
-        }
-
-        // -----------------------------------------------------
-        // ÁRBOL DE CAMIL (Fresitas y color rosado pastel)
-        // -----------------------------------------------------
-        const camilCanvas = document.getElementById('camilTreeCanvas'); 
-        const camilCtx = camilCanvas.getContext('2d', { alpha: false }); // Optimización para evitar composición alfa pesada
+        const camilCanvas = document.getElementById('camilTreeCanvas'); const camilCtx = camilCanvas.getContext('2d', { alpha: false }); 
         let camilBranches = []; let camilStrawberries = []; let camilFrameCount = 0; let camilTreeAnimationId;
 
         class Strawberry {
-            constructor(x, y, delay) {
-                this.x = x; this.y = y; this.delay = delay; this.size = 0; this.targetSize = Math.random() * 0.8 + 0.6; 
-                this.falling = Math.random() > 0.8; this.vy = Math.random() * 1 + 0.5; this.vx = (Math.random() - 0.5) * 1; this.sway = Math.random() * Math.PI * 2; 
-            }
+            constructor(x, y, delay) { this.x = x; this.y = y; this.delay = delay; this.size = 0; this.targetSize = Math.random() * 0.8 + 0.6; this.falling = Math.random() > 0.8; this.vy = Math.random() * 1 + 0.5; this.vx = (Math.random() - 0.5) * 1; this.sway = Math.random() * Math.PI * 2; }
             draw() {
                 if (camilFrameCount < this.delay) return; 
-                if (this.size < this.targetSize) { this.size += 0.03; } 
-                else if (this.falling) { this.y += this.vy; this.x += Math.sin(this.sway) * 0.5; this.sway += 0.05; }
-                
-                camilCtx.save(); 
-                camilCtx.translate(this.x, this.y); 
-                camilCtx.scale(this.size, this.size); 
-                camilCtx.font = "26px Arial"; 
-                camilCtx.textAlign = "center";
-                camilCtx.textBaseline = "middle";
-                camilCtx.shadowColor = 'rgba(255, 107, 129, 0.8)'; 
-                camilCtx.shadowBlur = 12;
-                camilCtx.fillText('🍓', 0, 0); 
-                camilCtx.restore();
+                if (this.size < this.targetSize) { this.size += 0.03; } else if (this.falling) { this.y += this.vy; this.x += Math.sin(this.sway) * 0.5; this.sway += 0.05; }
+                camilCtx.save(); camilCtx.translate(this.x, this.y); camilCtx.scale(this.size, this.size); camilCtx.font = "26px Arial"; camilCtx.textAlign = "center"; camilCtx.textBaseline = "middle";
+                camilCtx.shadowColor = 'rgba(255, 107, 129, 0.8)'; camilCtx.shadowBlur = 12; camilCtx.fillText('🍓', 0, 0); camilCtx.restore();
             }
         }
 
@@ -572,19 +939,12 @@
         function initCamilTreeAnimation() {
             camilCanvas.width = window.innerWidth; camilCanvas.height = window.innerHeight; camilBranches = []; camilStrawberries = []; camilFrameCount = 0;
             let isMobile = window.innerWidth < 600; let startLen = isMobile ? 100 : 160; let startWidth = isMobile ? 12 : 18; let startY = isMobile ? camilCanvas.height : camilCanvas.height + 20;
-            
-            // Fondo base inicial
             camilCtx.fillStyle = '#1d1326'; camilCtx.fillRect(0, 0, camilCanvas.width, camilCanvas.height);
-            
             generateCamilTreeData(camilCanvas.width / 2, startY, -Math.PI / 2, startLen, startWidth, 6, 0); cancelAnimationFrame(camilTreeAnimationId); animateCamilTree();
         }
 
         function animateCamilTree() {
-            // Efecto trail optimizado
-            camilCtx.fillStyle = 'rgba(29, 19, 38, 0.2)'; 
-            camilCtx.fillRect(0, 0, camilCanvas.width, camilCanvas.height); 
-            camilCtx.lineCap = 'round';
-            
+            camilCtx.fillStyle = 'rgba(29, 19, 38, 0.2)'; camilCtx.fillRect(0, 0, camilCanvas.width, camilCanvas.height); camilCtx.lineCap = 'round';
             camilBranches.forEach(b => {
                 if (camilFrameCount >= b.delay) {
                     if (b.currentLen < b.len) b.currentLen += 2.5; 
@@ -594,15 +954,16 @@
                 }
             });
             camilStrawberries.forEach(s => s.draw()); camilFrameCount++;
-            
             if (camilFrameCount === 180) document.getElementById('camilLetterBox').classList.add('show-letter');
             camilTreeAnimationId = requestAnimationFrame(animateCamilTree);
         }
 
         window.addEventListener('resize', () => { 
-            if(document.getElementById('modalTreeContainer').classList.contains('active')) initTreeAnimation(); 
+            if(document.getElementById('modalGalaxyContainer').classList.contains('active')) initGalaxyWarpAnimation(); 
             if(document.getElementById('modalCamilContainer').classList.contains('active')) initCamilTreeAnimation(); 
         });
+        
+        renderCards();
     </script>
 </body>
 </html>
