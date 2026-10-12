@@ -35,44 +35,34 @@
 
         /* --- DECORACIONES FLOTANTES FIJAS --- */
         .floating-decorations, .bg-decor {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             overflow: hidden; pointer-events: none; z-index: 0;
         }
         .floating-item {
-            position: absolute;
-            opacity: 0.3;
-            animation: floatItem 10s infinite ease-in-out;
-            user-select: none;
-            will-change: transform;
+            position: absolute; opacity: 0.3; animation: floatItem 10s infinite ease-in-out;
+            user-select: none; will-change: transform, opacity; transform: translateZ(0);
         }
         @keyframes floatItem {
-            0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; }
-            20% { opacity: 0.4; }
-            80% { opacity: 0.4; }
-            100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+            0% { transform: translate3d(0, 105vh, 0) rotate(0deg) scale(0.8); opacity: 0; }
+            20% { opacity: 0.4; } 80% { opacity: 0.4; }
+            100% { transform: translate3d(0, -10vh, 0) rotate(360deg) scale(1.2); opacity: 0; }
         }
 
         .particle {
-            position: absolute;
-            background: rgba(226, 183, 255, 0.15);
-            border-radius: 50%;
-            animation: rise 8s infinite ease-in-out;
-            will-change: transform;
+            position: absolute; background: rgba(226, 183, 255, 0.15); border-radius: 50%;
+            animation: rise 8s infinite ease-in-out; will-change: transform, opacity; transform: translateZ(0);
         }
         @keyframes rise {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            50% { opacity: 0.6; }
-            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+            0% { transform: translate3d(0, 100vh, 0) scale(0); opacity: 0; }
+            50% { opacity: 0.6; } 100% { transform: translate3d(0, -10vh, 0) scale(1); opacity: 0; }
         }
 
         /* --- PANTALLAS --- */
         .screen {
-            min-height: 100vh; width: 100%;
-            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-            position: absolute; top: 0; left: 0;
-            z-index: 1;
+            min-height: 100vh; width: 100%; transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            position: absolute; top: 0; left: 0; z-index: 1;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
+            will-change: opacity, transform;
         }
         .hidden-screen { opacity: 0; pointer-events: none; transform: scale(0.95); z-index: 0; visibility: hidden; }
         .active-screen { opacity: 1; pointer-events: auto; transform: scale(1); z-index: 2; position: relative; visibility: visible; }
@@ -80,36 +70,27 @@
         /* --- LANDING --- */
         .landing-content {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; padding: 20px; position: relative; z-index: 3;
-            max-width: 800px; margin: 0 auto; min-height: 100vh;
+            text-align: center; padding: 20px; position: relative; z-index: 3; max-width: 800px; margin: 0 auto; min-height: 100vh;
         }
-        
         .landing-badge {
-            font-size: 1rem; text-transform: uppercase; letter-spacing: 4px;
-            color: var(--secondary-color); margin-bottom: 15px; opacity: 0.9;
-            border: 1px solid rgba(226, 183, 255, 0.3); padding: 8px 20px; border-radius: 20px;
-            background: rgba(176, 87, 245, 0.15); backdrop-filter: blur(5px);
-            box-shadow: 0 0 15px rgba(176, 87, 245, 0.2);
+            font-size: 1rem; text-transform: uppercase; letter-spacing: 4px; color: var(--secondary-color);
+            margin-bottom: 15px; opacity: 0.9; border: 1px solid rgba(226, 183, 255, 0.3); padding: 8px 20px; border-radius: 20px;
+            background: rgba(176, 87, 245, 0.15); backdrop-filter: blur(5px); box-shadow: 0 0 15px rgba(176, 87, 245, 0.2);
         }
-
         .landing-content h1 {
             font-family: 'Dancing Script', cursive; font-size: 5.5rem; color: #fff;
             text-shadow: 0 0 20px var(--primary-color), 0 0 40px rgba(176, 87, 245, 0.5);
-            margin-bottom: 20px; animation: floatTitle 3s ease-in-out infinite;
+            margin-bottom: 20px; animation: floatTitle 3s ease-in-out infinite; will-change: transform;
         }
         .landing-content p { font-size: 1.25rem; max-width: 580px; line-height: 1.7; margin-bottom: 40px; opacity: 0.9; color: #eedcff; }
-        
         .btn-entrar {
-            background: linear-gradient(135deg, #7b2cbf, #b057f5); 
-            color: var(--text-color-light); font-family: 'Montserrat', sans-serif;
-            font-weight: 600; font-size: 1.1rem; padding: 16px 45px;
-            border: 2px solid var(--secondary-color); border-radius: 30px; cursor: pointer;
-            text-transform: uppercase; letter-spacing: 1px;
-            box-shadow: 0 0 25px rgba(176, 87, 245, 0.5); transition: all 0.4s ease;
+            background: linear-gradient(135deg, #7b2cbf, #b057f5); color: var(--text-color-light); font-family: 'Montserrat', sans-serif;
+            font-weight: 600; font-size: 1.1rem; padding: 16px 45px; border: 2px solid var(--secondary-color); border-radius: 30px; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 0 25px rgba(176, 87, 245, 0.5); transition: all 0.4s ease;
+            will-change: transform, box-shadow;
         }
         .btn-entrar:hover { 
-            background: transparent; color: var(--secondary-color); 
-            box-shadow: 0 0 35px var(--primary-color); transform: translateY(-4px) scale(1.05); 
+            background: transparent; color: var(--secondary-color); box-shadow: 0 0 35px var(--primary-color); transform: translateY(-4px) scale(1.05); 
         }
         @keyframes floatTitle { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
 
@@ -119,49 +100,40 @@
         .header h2 { 
             font-family: 'Dancing Script', cursive; font-size: 4rem; color: var(--secondary-color); 
             text-shadow: 0 0 20px var(--primary-color), 0 0 40px rgba(176, 87, 245, 0.4); 
-            margin-bottom: 10px; animation: headerGlow 4s ease-in-out infinite alternate; 
+            margin-bottom: 10px; animation: headerGlow 4s ease-in-out infinite alternate; will-change: text-shadow;
         }
-        @keyframes headerGlow {
-            0% { text-shadow: 0 0 15px var(--primary-color); }
-            100% { text-shadow: 0 0 30px var(--secondary-color), 0 0 50px var(--primary-color); }
-        }
+        @keyframes headerGlow { 0% { text-shadow: 0 0 15px var(--primary-color); } 100% { text-shadow: 0 0 30px var(--secondary-color), 0 0 50px var(--primary-color); } }
         .header p { color: #d4b5ff; font-size: 1.1rem; letter-spacing: 1px; }
         
         .cards-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 30px 40px 60px 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
-        
         .card-item {
-            background: rgba(43, 13, 71, 0.45); backdrop-filter: blur(10px);
-            border: 2px solid rgba(176, 87, 245, 0.4); border-radius: 25px;
+            background: rgba(43, 13, 71, 0.45); backdrop-filter: blur(10px); border: 2px solid rgba(176, 87, 245, 0.4); border-radius: 25px;
             width: 270px; height: 190px; display: flex; flex-direction: column; justify-content: center; align-items: center;
             cursor: pointer; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden;
-            opacity: 0; transform: translateY(30px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(176, 87, 245, 0.1);
+            opacity: 0; transform: translateY(30px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(176, 87, 245, 0.1);
+            will-change: transform, opacity, box-shadow;
         }
         .card-item.show { opacity: 1; transform: translateY(0); }
-        
-        .card-item::before { content: '🌷'; font-size: 3.5rem; opacity: 0.25; position: absolute; top: 15px; left: 15px; transition: all 0.5s ease; }
-        .card-item::after { content: '💜'; font-size: 2rem; opacity: 0.25; position: absolute; bottom: 15px; right: 20px; transition: all 0.5s ease; }
-
+        .card-item::before { content: '🌷'; font-size: 3.5rem; opacity: 0.25; position: absolute; top: 15px; left: 15px; transition: all 0.5s ease; will-change: transform, opacity; }
+        .card-item::after { content: '💜'; font-size: 2rem; opacity: 0.25; position: absolute; bottom: 15px; right: 20px; transition: all 0.5s ease; will-change: transform, opacity; }
         .card-item:hover { 
-            transform: translateY(-12px) scale(1.06); border-color: var(--secondary-color); 
-            background: rgba(63, 20, 102, 0.6);
+            transform: translateY(-12px) scale(1.06); border-color: var(--secondary-color); background: rgba(63, 20, 102, 0.6);
             box-shadow: 0 20px 40px rgba(176, 87, 245, 0.5), inset 0 0 25px rgba(226, 183, 255, 0.3); 
         }
         .card-item:hover::before { opacity: 0.6; transform: scale(1.2) rotate(-10deg); }
         .card-item:hover::after { opacity: 0.6; transform: scale(1.3) rotate(15deg); }
-
-        .card-item span { font-family: 'Dancing Script', cursive; font-size: 2.5rem; z-index: 1; color: #fff; text-shadow: 0 0 12px rgba(0,0,0,0.8); transition: transform 0.3s ease; }
+        .card-item span { font-family: 'Dancing Script', cursive; font-size: 2.5rem; z-index: 1; color: #fff; text-shadow: 0 0 12px rgba(0,0,0,0.8); transition: transform 0.3s ease; will-change: transform;}
         .card-item:hover span { transform: scale(1.05); color: var(--secondary-color); }
         .card-item small { font-size: 0.85rem; margin-top: 12px; z-index: 1; opacity: 0.85; text-transform: uppercase; color: var(--secondary-color); letter-spacing: 2px; transition: opacity 0.3s ease; }
         .card-item:hover small { opacity: 1; }
 
         /* --- CLASES COMPARTIDAS MODALES --- */
-        .modal-body { display: flex; align-items: flex-start; gap: 40px; max-height: 75vh; overflow-y: auto; padding-right: 15px; }
+        .modal-body { display: flex; align-items: flex-start; gap: 40px; padding-right: 15px; }
         .text-content { text-align: center; flex: 1; padding-bottom: 20px; }
         .text-content p { font-size: 1.15rem; line-height: 1.7; margin-bottom: 20px; white-space: pre-line; color: #f3e8ff; }
         .image-content { flex-shrink: 0; position: sticky; top: 0; display: flex; flex-direction: column; gap: 15px; } 
         .image-content img { max-width: 350px; width: 100%; border-radius: 15px; border: 3px solid var(--image-border); object-fit: cover; box-shadow: 0 0 25px var(--glow); }
-        .close-button { position: absolute; top: 15px; right: 25px; font-size: 2.5rem; color: var(--secondary-color); cursor: pointer; transition: all 0.3s; z-index: 50; }
+        .close-button { position: absolute; top: 15px; right: 25px; font-size: 2.5rem; color: var(--secondary-color); cursor: pointer; transition: transform 0.3s, color 0.3s; z-index: 50; }
         .close-button:hover { transform: rotate(90deg) scale(1.2); color: #fff; }
 
         /* --- MODAL ESTÁNDAR (Mamá) --- */
@@ -169,21 +141,24 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(5, 1, 10, 0.85); display: flex; justify-content: center; align-items: center;
             z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; backdrop-filter: blur(8px);
+            will-change: opacity;
         }
         .modal-container.active { opacity: 1; pointer-events: auto; }
         
         .modal-content-std {
             background-color: var(--modal-bg); padding: 40px 50px; border-radius: 30px; max-width: 900px; width: 90%; position: relative; overflow: hidden;
             border: 1px solid rgba(176, 87, 245, 0.4); --glow: rgba(176, 87, 245, 0.6); box-shadow: 0 15px 50px var(--glow);
+            max-height: 85vh; overflow-y: auto; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            will-change: transform;
         }
         .text-content-std h1 { font-family: 'Dancing Script', cursive; font-size: 3.2rem; margin-bottom: 25px; color: var(--secondary-color); text-shadow: 0 0 20px var(--glow); }
         .text-content-std .signature { font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 30px; display: block; color: var(--secondary-color); }
 
-        /* --- MODAL ESPECIAL OSCAR (Árbol) --- */
+        /* --- MODAL ESPECIAL OSCAR (Árbol Corazones) --- */
         #modalTreeContainer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, #0f031c, #1f0836, #000000);
-            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.8s ease;
+            background: linear-gradient(to bottom, #0f031c, #1f0836, #000000); z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.8s ease;
+            will-change: opacity;
         }
         #modalTreeContainer.active { opacity: 1; pointer-events: auto; }
         #treeCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; }
@@ -194,7 +169,7 @@
             border: 1px solid rgba(176, 87, 245, 0.3); border-radius: 25px; padding: 40px 50px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 25px rgba(176, 87, 245, 0.2);
             opacity: 0; pointer-events: none; transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: center; z-index: 10; max-height: 85vh; overflow-y: auto;
+            text-align: center; z-index: 10; max-height: 85vh; overflow-y: auto; will-change: transform, opacity;
         }
         .glass-letter.show-letter { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
         .glass-letter h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: var(--secondary-color); margin-bottom: 25px; text-shadow: 0 0 20px rgba(176, 87, 245, 0.8); }
@@ -202,84 +177,77 @@
         .glass-letter p { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; line-height: 1.8; color: #f7efff; white-space: pre-line; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
         .glass-letter .signature { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: var(--secondary-color); display: block; margin-top: 35px; }
 
-        /* --- MODAL ESPECIAL CAMIL (Coquette / Aesthetic) --- */
-        .camil-content-box {
-            background: linear-gradient(135deg, #1d1326, #2d1a38);
-            padding: 50px 40px; border-radius: 15px; max-width: 950px; width: 90%; position: relative; overflow: hidden;
-            border: 4px double #a2b5d4; /* Simula encaje blanco/azul */
-            box-shadow: 0 15px 50px rgba(162, 181, 212, 0.3), inset 0 0 30px rgba(200, 100, 100, 0.1);
-            z-index: 10; margin: 0 auto;
-        }
 
-        /* Simulación de encaje rojo/vintage a los lados */
-        .camil-content-box::before, .camil-content-box::after {
-            content: '🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀';
-            position: absolute; top: 0; bottom: 0; width: 30px;
-            display: flex; flex-direction: column; overflow: hidden;
-            font-size: 1.5rem; line-height: 1.5; opacity: 0.25; text-align: center; color: #c45b6b;
-            pointer-events: none;
+        /* --- MODAL ESPECIAL CAMIL (Árbol Fresitas) --- */
+        #modalCamilContainer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, #1d1326, #2d1a38, #0a0510);
+            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.8s ease;
+            will-change: opacity;
         }
-        .camil-content-box::before { left: 0; border-right: 2px dashed #c45b6b; background: rgba(196, 91, 107, 0.1); }
-        .camil-content-box::after { right: 0; border-left: 2px dashed #c45b6b; background: rgba(196, 91, 107, 0.1); }
+        #modalCamilContainer.active { opacity: 1; pointer-events: auto; }
+        #camilTreeCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+        
+        .camil-content-box {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%) scale(0.95);
+            background: linear-gradient(135deg, #1d1326, #2d1a38);
+            padding: 50px 40px; border-radius: 15px; max-width: 950px; width: 90%; 
+            border: 4px double #a2b5d4; box-shadow: 0 15px 50px rgba(162, 181, 212, 0.3), inset 0 0 30px rgba(220, 80, 110, 0.15);
+            opacity: 0; pointer-events: none; transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10; max-height: 85vh; overflow-y: auto; overflow-x: hidden;
+            will-change: transform, opacity;
+        }
+        .camil-content-box.show-letter { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+
+        .camil-content-box::before, .camil-content-box::after {
+            content: '🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓🎀🍓';
+            position: absolute; top: 0; bottom: 0; width: 30px; display: flex; flex-direction: column; overflow: hidden;
+            font-size: 1.4rem; line-height: 1.6; opacity: 0.3; text-align: center; color: #c45b6b; pointer-events: none;
+        }
+        .camil-content-box::before { left: 0; border-right: 2px dashed rgba(196, 91, 107, 0.4); background: rgba(196, 91, 107, 0.08); }
+        .camil-content-box::after { right: 0; border-left: 2px dashed rgba(196, 91, 107, 0.4); background: rgba(196, 91, 107, 0.08); }
 
         .camil-bubble {
             position: absolute; top: 25px; left: 50%; transform: translateX(-50%);
-            background: #fdfbf7; color: #555; padding: 10px 25px; border-radius: 20px;
-            font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 20;
-            animation: floatBubble 3s ease-in-out infinite; pointer-events: none;
+            background: #fdfbf7; color: #444; padding: 10px 25px; border-radius: 20px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1.1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 20; animation: floatBubble 3.5s ease-in-out infinite; pointer-events: none;
+            will-change: transform;
         }
-        .camil-bubble::after {
-            content: ''; position: absolute; bottom: -10px; left: 30px;
-            border-width: 10px 10px 0; border-style: solid; border-color: #fdfbf7 transparent transparent transparent;
-        }
+        .camil-bubble::after { content: ''; position: absolute; bottom: -10px; left: 30px; border-width: 10px 10px 0; border-style: solid; border-color: #fdfbf7 transparent transparent transparent; }
         
-        .camil-decor-element {
-            position: absolute; font-size: 3.5rem; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); z-index: 5;
-            animation: gentleFloat 4s ease-in-out infinite alternate; pointer-events: none;
-        }
-        .decor-cats { bottom: 20px; right: 50px; }
-        .decor-tulip { top: 40px; right: 40px; font-size: 4.5rem; animation-delay: 1s; }
+        .camil-decor-element { position: absolute; font-size: 3.5rem; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4)); z-index: 5; animation: gentleFloat 4s ease-in-out infinite alternate; pointer-events: none; will-change: transform; }
+        .decor-cats { bottom: 20px; right: 50px; font-size: 4rem; }
+        .decor-strawberry { top: 40px; right: 40px; font-size: 4.5rem; animation-delay: 1s; }
         .decor-camera { bottom: 30px; left: 50px; font-size: 3rem; animation-delay: 2s; }
 
-        .camil-star {
-            position: absolute; color: #a2b5d4; text-shadow: 0 0 8px rgba(255,255,255,0.8);
-            animation: starFall linear infinite; z-index: 1; pointer-events: none; opacity: 0;
-        }
+        .camil-particle { position: absolute; text-shadow: 0 0 8px rgba(255,255,255,0.7); animation: starFall linear infinite; z-index: 1; pointer-events: none; opacity: 0; will-change: transform, opacity; transform: translateZ(0); }
 
         #camilImageContainer img {
-            border: 8px solid #fdfbf7; /* Estilo polaroid */
-            border-bottom: 25px solid #fdfbf7;
-            border-radius: 5px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            transform: rotate(3deg); transition: transform 0.4s ease;
+            border: 8px solid #fdfbf7; border-bottom: 25px solid #fdfbf7; border-radius: 5px; box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            transform: rotate(3deg); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            will-change: transform;
         }
         #camilImageContainer img:nth-child(even) { transform: rotate(-3deg); }
-        #camilImageContainer img:hover { transform: rotate(0deg) scale(1.05); z-index: 2; position: relative; }
+        #camilImageContainer img:hover { transform: rotate(0deg) scale(1.06); z-index: 2; position: relative; }
 
         .text-content-camil h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin-bottom: 25px; color: #a2b5d4; text-shadow: 0 0 15px rgba(162, 181, 212, 0.6); }
-        .text-content-camil .signature { font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-top: 30px; display: block; color: #e2b7ff; }
+        .text-content-camil .signature { font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-top: 30px; display: block; color: #ffb7c5; text-shadow: 0 0 10px rgba(255,183,197,0.4); }
 
-        @keyframes floatBubble { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -8px); } }
-        @keyframes gentleFloat { 0% { transform: translateY(0) rotate(-5deg); } 100% { transform: translateY(-15px) rotate(5deg); } }
+        @keyframes floatBubble { 0%, 100% { transform: translate3d(-50%, 0, 0); } 50% { transform: translate3d(-50%, -10px, 0); } }
+        @keyframes gentleFloat { 0% { transform: translate3d(0,0,0) rotate(-4deg); } 100% { transform: translate3d(0,-12px,0) rotate(4deg); } }
         @keyframes starFall { 
-            0% { transform: translateY(-50px) rotate(0deg) scale(0.5); opacity: 0; } 
-            15% { opacity: 0.9; }
-            85% { opacity: 0.9; }
-            100% { transform: translateY(100vh) rotate(360deg) scale(1.2); opacity: 0; } 
+            0% { transform: translate3d(0, -50px, 0) rotate(0deg) scale(0.5); opacity: 0; } 
+            15% { opacity: 0.9; } 85% { opacity: 0.9; } 100% { transform: translate3d(0, 100vh, 0) rotate(360deg) scale(1.1); opacity: 0; } 
         }
 
         @media (max-width: 850px) {
             .modal-body { flex-direction: column; gap: 25px; align-items: center; }
-            .image-content { position: relative; order: -1; }
-            .image-content img { max-width: 250px; }
-            .glass-letter { padding: 30px 20px; }
-            .glass-letter h1 { font-size: 2.5rem; }
+            .image-content { position: relative; order: -1; } .image-content img { max-width: 250px; }
+            .glass-letter, .camil-content-box { padding: 30px 20px; } 
+            .glass-letter h1, .text-content-camil h1 { font-size: 2.5rem; } 
             .glass-letter img { max-width: 220px; }
-            .camil-content-box { padding: 40px 20px; }
-            .camil-decor-element { font-size: 2rem; opacity: 0.5; } /* Decoraciones más sutiles en móvil */
-            .decor-tulip { font-size: 2.5rem; }
+            .camil-decor-element { font-size: 2rem; opacity: 0.7; } 
+            .decor-strawberry { font-size: 2.5rem; } 
             .camil-content-box::before, .camil-content-box::after { width: 15px; font-size: 0.8rem; }
-            .modal-body { margin-left: 15px; margin-right: 15px; }
         }
     </style>
 </head>
@@ -321,7 +289,7 @@
         </div>
     </div>
 
-    <!-- MODAL ESPECIAL OSCAR -->
+    <!-- MODAL ESPECIAL OSCAR (Corazones) -->
     <div id="modalTreeContainer">
         <canvas id="treeCanvas"></canvas>
         <div class="glass-letter" id="oscarGlassLetter">
@@ -333,21 +301,24 @@
         </div>
     </div>
 
-    <!-- MODAL ESPECIAL CAMIL -->
-    <div id="modalCamilContainer" class="modal-container">
-        <!-- Lluvia de estrellas de fondo -->
+    <!-- MODAL ESPECIAL CAMIL (Fresitas) -->
+    <div id="modalCamilContainer">
+        <!-- Canvas para el Árbol de Fresas -->
+        <canvas id="camilTreeCanvas"></canvas>
+        
+        <!-- Contenedor de partículas mágicas de fondo -->
         <div id="camilStarsContainer" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; pointer-events: none; overflow: hidden;"></div>
         
-        <div class="camil-content-box">
+        <!-- CARTA EXPANDIDA (Contenido Real) -->
+        <div class="camil-content-box" id="camilLetterBox">
             <span class="close-button" style="z-index: 50;" onclick="closeCamilModal()">×</span>
             
-            <!-- Decoraciones estéticas inspiradas en el collage -->
-            <div class="camil-bubble">I love you ♡ ˊˎ-</div>
-            <div class="camil-decor-element decor-cats">🐈‍⬛💕🐈</div>
-            <div class="camil-decor-element decor-tulip">🐱🌷</div>
-            <div class="camil-decor-element decor-camera">📸</div>
+            <div class="camil-bubble">I love you 🍓♡ ˊˎ-</div>
+            <div class="camil-decor-element decor-cats">🐈‍⬛💕</div>
+            <div class="camil-decor-element decor-strawberry">🍓🍰</div>
+            <div class="camil-decor-element decor-camera">📸✨</div>
             
-            <div class="modal-body" style="position: relative; z-index: 10; margin-top: 20px; margin-left: 20px; margin-right: 20px;">
+            <div class="modal-body" style="position: relative; z-index: 10; margin-top: 20px; margin-left: 10px; margin-right: 10px;">
                 <div class="text-content text-content-camil">
                     <h1 id="camilTitle">TÍTULO</h1>
                     <p id="camilText">Texto</p>
@@ -359,58 +330,39 @@
     </div>
 
     <script>
+        // Optimizaciones Generales y Datos
         const floatingDecor = document.getElementById('floatingDecor');
         const decorSymbols = ['🌷', '🌸', '💐', '🧸', '💜', '✨', '🌹'];
-        
         for (let i = 0; i < 16; i++) {
-            const item = document.createElement('div');
-            item.className = 'floating-item';
-            item.textContent = decorSymbols[Math.floor(Math.random() * decorSymbols.length)];
-            item.style.left = `${Math.random() * 100}%`;
-            item.style.fontSize = `${Math.random() * 1.5 + 1.2}rem`;
-            item.style.animationDuration = `${Math.random() * 8 + 8}s`;
-            item.style.animationDelay = `${Math.random() * 5}s`;
+            const item = document.createElement('div'); item.className = 'floating-item'; item.textContent = decorSymbols[Math.floor(Math.random() * decorSymbols.length)];
+            item.style.left = `${Math.random() * 100}%`; item.style.fontSize = `${Math.random() * 1.5 + 1.2}rem`; item.style.animationDuration = `${Math.random() * 8 + 8}s`; item.style.animationDelay = `${Math.random() * 5}s`;
             floatingDecor.appendChild(item);
         }
 
         const bgDecor = document.getElementById('bgDecor');
         for (let i = 0; i < 12; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            const size = Math.random() * 5 + 2;
-            p.style.width = `${size}px`;
-            p.style.height = `${size}px`;
-            p.style.left = `${Math.random() * 100}%`;
-            p.style.animationDuration = `${Math.random() * 6 + 5}s`;
-            p.style.animationDelay = `${Math.random() * 5}s`;
+            const p = document.createElement('div'); p.className = 'particle'; const size = Math.random() * 5 + 2; p.style.width = `${size}px`; p.style.height = `${size}px`;
+            p.style.left = `${Math.random() * 100}%`; p.style.animationDuration = `${Math.random() * 6 + 5}s`; p.style.animationDelay = `${Math.random() * 5}s`;
             bgDecor.appendChild(p);
         }
 
         const cartasData = [
             {
-                id: 1, 
-                author: "Oscar",
-                title: "BAILA CONMIGO EL BAILE DE LA VIDA",
+                id: 1, author: "Oscar", title: "BAILA CONMIGO EL BAILE DE LA VIDA",
                 text: "Pensé que lo más hermoso que podía contemplar era el cielo estrellado de una noche oscura, hasta que descubrí constelaciones enteras latiendo en tu mirada, incluso a plena luz del día. Desde entonces, alzar la vista al cielo ya no tiene el mismo significado: el único universo que me atrapa y me deja sin palabras es el tuyo.\n\nNo sé si este pensamiento constante nace de tu ausencia en mi realidad o de lo mucho que habitas en mis sueños, pero tengo la certeza de que cada palabra que te escribo es un acierto. Al cerrar los ojos, la oscuridad no existe; el resplandor de tu alma ilumina cada rincón de la mía.\n\nEsa decisión marcó un cambio en mi vida maravilloso, me mostró que siempre vale la pena intentar una vez más, nuevamente te agradezco por llegar a mi vida y mostrarme lo maravillosa que es.\n\nGracias. Con amor Oscar.",
-                signature: "Te amo, Luisa 💜",
-                images: ["NOSOTROS.jpg"]
+                signature: "Te amo, Luisa 💜", images: ["NOSOTROS.jpg"]
             },
             {
-                id: 2,
-                author: "Mamá",
-                title: "MI LUZ BRILLANTE",
+                id: 2, author: "Mamá", title: "MI LUZ BRILLANTE",
                 text: "Desde el primer día que llegaste a mi vida, supe que eras alguien especial. \n\nNo importa cuánto crezcas o a dónde vayas, siempre estaré aquí para apoyarte en cada paso que des. Me haces sentir la persona más afortunada del mundo.",
-                signature: "Con todo mi amor, Mamá 🌸",
-                images: ["https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"],
+                signature: "Con todo mi amor, Mamá 🌸", images: ["https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"],
                 theme: { c1: "#3a0ca3", c2: "#7209b7", c3: "#b5179e", glow: "rgba(181, 23, 158, 0.8)" }
             },
             {
-                id: 3,
-                author: "Camil",
-                title: "MI PASTELITO",
+                id: 3, author: "Camil", title: "MI PASTELITO",
                 text: "Holiii mi pastelitooo, ¡mi linda, espero que estés súper y mega bien! Y si no es así, sabes que siempre estaré aquí para escucharte. No importa si no hemos hablado hace poco, sabes que si necesitas desahogarte siempre estaré ahí, como lo hemos estado todos estos años, estando la una para la otra.\n\nMuchas gracias por ser esa personita tan hermosa con la que en muchas ocasiones compartimos la misma neurona ajajja y eso me encantaaaa🙂‍↕️.\n\nAmo tu lado creativo  (me encantaaa y lo sabes, nunca dejare de decirtelo jsjsksk) y tu lado melancólico; son unos de tus tantos talentos que la verdad me sorprenden. Eres una de las personitas más creativas e ingeniosas que conozco, así que sigue adelante y cumple todos tus sueños. Yo sé que tú puedes; no va a ser algo de la noche a la mañana, pero sé que lo vas a lograr, ya que eres una personita demasiado inteligente y capaz. Sé que para ti no ha sido fácil llegar a donde estás, pero lo has hecho y de una manera excelente, por lo cual estoy muy orgullosa de ti y de la gran personita en la que te estás convirtiendo.\n\n¡Aaaay mi Lulu, eres mi escritora favorita! Por favor, sigamos escribiendo juntas la historia de wd jajaja, era uno de mis días más felices y emocionantes; obviamente la historia no va a tener la misma trama, pero de verdad era buena sjsjsjjs. No digo que lo vayamos a hacer ahora o mañana jajaja, sino que lo hagamos en algún momento nuevamente sjsjjs, extraño eso.\n\nY extraño pasar más tiempo juntas, nuestros días en el SENA me mal acostumbraron, te extraño mi linda dndjdkjd.\n\nMuchas gracias por todo 💜. Jajajaj no sé, tú sabes que mi especialidad es hablar de todo y de nada jajsj, y así despido esta pequeña carta (la cual sé que soy muy mala haciendo sjjsjs).\n\nTe amo muchote, mi Lulu, y te extraño aún más. Muchos besos y abrazos para esa linda, muaaaaaaa.",
-                signature: "Muchos besos y abrazos muaaaaaaa ! ?",
-                images: ["FOTO-CAMILA.jpeg", "FOTO-CAMILA2.jpeg"],
+                signature: "Muchos besos y abrazos muaaaaaaa ! ?", 
+                images: ["FOTO-CAMILA.jpeg", "FOTO-CAMILA2.jpeg"], // <-- Nombres actualizados
                 theme: { c1: "#480ca8", c2: "#560bad", c3: "#b5179e", glow: "rgba(86, 11, 173, 0.8)" }
             }
         ];
@@ -419,20 +371,16 @@
             document.getElementById('landingScreen').classList.replace('active-screen', 'hidden-screen');
             setTimeout(() => {
                 document.getElementById('galleryScreen').classList.replace('hidden-screen', 'active-screen');
-                document.querySelectorAll('.card-item').forEach((card, i) => {
-                    setTimeout(() => card.classList.add('show'), i * 150);
-                });
+                document.querySelectorAll('.card-item').forEach((card, i) => { setTimeout(() => card.classList.add('show'), i * 150); });
             }, 500);
         });
 
         function renderCards() {
             const grid = document.getElementById('cardsGrid');
             cartasData.forEach(carta => {
-                const card = document.createElement('div');
-                card.className = 'card-item';
+                const card = document.createElement('div'); card.className = 'card-item';
                 card.innerHTML = `<span>De: ${carta.author}</span><small>Haz clic para abrir</small>`;
-                card.addEventListener('click', () => openModal(carta));
-                grid.appendChild(card);
+                card.addEventListener('click', () => openModal(carta)); grid.appendChild(card);
             });
         }
 
@@ -440,7 +388,7 @@
             document.body.style.overflow = 'hidden'; 
 
             if (carta.id === 1) {
-                // MODAL OSCAR
+                // MODAL OSCAR (Árbol Corazones)
                 document.getElementById('oscarTitle').textContent = carta.title;
                 document.getElementById('oscarImage').src = carta.images[0];
                 document.getElementById('oscarText').textContent = carta.text;
@@ -449,7 +397,7 @@
                 initTreeAnimation(); 
 
             } else if (carta.id === 3) {
-                // MODAL CAMIL (Aesthetic / Coquette)
+                // MODAL CAMIL (Árbol Fresitas)
                 document.getElementById('camilTitle').textContent = carta.title;
                 document.getElementById('camilText').textContent = carta.text;
                 document.getElementById('camilSignature').textContent = carta.signature;
@@ -457,14 +405,12 @@
                 const imageContainer = document.getElementById('camilImageContainer');
                 imageContainer.innerHTML = '';
                 carta.images.forEach(imgSrc => {
-                    const imgElement = document.createElement('img');
-                    imgElement.src = imgSrc;
-                    imgElement.alt = "Imagen de Camil";
-                    imageContainer.appendChild(imgElement);
+                    const imgElement = document.createElement('img'); imgElement.src = imgSrc; imageContainer.appendChild(imgElement);
                 });
 
                 document.getElementById('modalCamilContainer').classList.add('active');
                 createCamilStars();
+                initCamilTreeAnimation(); 
 
             } else {
                 // MODAL ESTÁNDAR (Mamá)
@@ -475,123 +421,99 @@
                 const imageContainer = document.getElementById('modalImageContainer');
                 imageContainer.innerHTML = '';
                 carta.images.forEach(imgSrc => {
-                    const imgElement = document.createElement('img');
-                    imgElement.src = imgSrc;
-                    imageContainer.appendChild(imgElement);
+                    const imgElement = document.createElement('img'); imgElement.src = imgSrc; imageContainer.appendChild(imgElement);
                 });
 
                 const box = document.getElementById('modalBox');
-                box.style.setProperty('--c1', carta.theme.c1);
-                box.style.setProperty('--c2', carta.theme.c2);
-                box.style.setProperty('--c3', carta.theme.c3);
-                box.style.setProperty('--glow', carta.theme.glow);
-
-                box.style.transform = 'scale(0.8)';
-                setTimeout(() => box.style.transform = 'scale(1)', 50);
-
+                box.style.setProperty('--c1', carta.theme.c1); box.style.setProperty('--c2', carta.theme.c2); box.style.setProperty('--c3', carta.theme.c3); box.style.setProperty('--glow', carta.theme.glow);
+                box.style.transform = 'scale(0.8)'; setTimeout(() => box.style.transform = 'scale(1)', 50);
                 document.getElementById('modalStandard').classList.add('active');
             }
         }
 
         function closeModals() {
-            document.getElementById('modalStandard').classList.remove('active');
-            document.body.style.overflow = 'auto';
+            document.getElementById('modalStandard').classList.remove('active'); document.body.style.overflow = 'auto';
             setTimeout(() => { document.getElementById('modalImageContainer').innerHTML = ''; }, 400);
         }
 
         function closeTreeModal() {
-            document.getElementById('modalTreeContainer').classList.remove('active');
-            document.getElementById('oscarGlassLetter').classList.remove('show-letter');
-            document.body.style.overflow = 'auto';
-            cancelAnimationFrame(treeAnimationId); 
+            document.getElementById('modalTreeContainer').classList.remove('active'); document.getElementById('oscarGlassLetter').classList.remove('show-letter');
+            document.body.style.overflow = 'auto'; cancelAnimationFrame(treeAnimationId); 
         }
 
         function closeCamilModal() {
-            document.getElementById('modalCamilContainer').classList.remove('active');
-            document.body.style.overflow = 'auto';
+            document.getElementById('modalCamilContainer').classList.remove('active'); 
+            document.getElementById('camilLetterBox').classList.remove('show-letter');
+            document.body.style.overflow = 'auto'; cancelAnimationFrame(camilTreeAnimationId);
             setTimeout(() => {
                 document.getElementById('camilImageContainer').innerHTML = '';
                 document.getElementById('camilStarsContainer').innerHTML = '';
-            }, 400);
+            }, 800);
         }
 
-        // Animación de estrellas para Camil
+        // Partículas Mágicas (Camil) optimizadas
         function createCamilStars() {
-            const container = document.getElementById('camilStarsContainer');
-            container.innerHTML = ''; 
+            const container = document.getElementById('camilStarsContainer'); container.innerHTML = ''; 
+            const particles = ['🍓', '✨', '🎀', '🌸', '✨', '🍓']; 
             for(let i=0; i<35; i++) {
-                let star = document.createElement('div');
-                star.className = 'camil-star';
-                star.innerHTML = Math.random() > 0.5 ? '★' : '✨';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.color = Math.random() > 0.5 ? '#a2b5d4' : '#ffffff'; // Estrellas azules o blancas
-                star.style.animationDuration = (Math.random() * 5 + 6) + 's';
-                star.style.animationDelay = (Math.random() * 4) + 's';
-                star.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
-                container.appendChild(star);
+                let p = document.createElement('div'); p.className = 'camil-particle';
+                p.innerHTML = particles[Math.floor(Math.random() * particles.length)];
+                p.style.left = Math.random() * 100 + '%'; 
+                p.style.color = Math.random() > 0.5 ? '#a2b5d4' : '#ffffff';
+                p.style.animationDuration = (Math.random() * 4 + 5) + 's'; 
+                p.style.animationDelay = (Math.random() * 3) + 's';
+                p.style.fontSize = (Math.random() * 1.5 + 1) + 'rem'; 
+                container.appendChild(p);
             }
         }
 
         renderCards();
 
-        // Lógica del Árbol de Oscar
-        const canvas = document.getElementById('treeCanvas');
-        const ctx = canvas.getContext('2d');
-        let allBranches = [];
-        let allHearts = [];
-        let frameCount = 0;
-        let treeAnimationId;
+        // -----------------------------------------------------
+        // ÁRBOL DE OSCAR (Corazones morados)
+        // -----------------------------------------------------
+        const canvas = document.getElementById('treeCanvas'); const ctx = canvas.getContext('2d', { alpha: false });
+        let allBranches = []; let allHearts = []; let frameCount = 0; let treeAnimationId;
 
         class Heart {
             constructor(x, y, delay) {
-                this.x = x; this.y = y; this.delay = delay;
-                this.size = 0; this.targetSize = Math.random() * 0.8 + 0.6; 
-                this.falling = Math.random() > 0.8;
-                this.vy = Math.random() * 1 + 0.5; this.vx = (Math.random() - 0.5) * 1;
-                this.sway = Math.random() * Math.PI * 2; 
+                this.x = x; this.y = y; this.delay = delay; this.size = 0; this.targetSize = Math.random() * 0.8 + 0.6; 
+                this.falling = Math.random() > 0.8; this.vy = Math.random() * 1 + 0.5; this.vx = (Math.random() - 0.5) * 1; this.sway = Math.random() * Math.PI * 2; 
             }
             draw() {
                 if (frameCount < this.delay) return; 
-                if (this.size < this.targetSize) { this.size += 0.03; } 
-                else if (this.falling) { this.y += this.vy; this.x += Math.sin(this.sway) * 0.5; this.sway += 0.05; }
-
-                ctx.save(); ctx.translate(this.x, this.y); ctx.scale(this.size, this.size);
-                ctx.fillStyle = '#d8b4fe'; ctx.shadowColor = '#b057f5'; ctx.shadowBlur = 15;
+                if (this.size < this.targetSize) { this.size += 0.03; } else if (this.falling) { this.y += this.vy; this.x += Math.sin(this.sway) * 0.5; this.sway += 0.05; }
+                ctx.save(); ctx.translate(this.x, this.y); ctx.scale(this.size, this.size); ctx.fillStyle = '#d8b4fe'; ctx.shadowColor = '#b057f5'; ctx.shadowBlur = 15;
                 ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(0, -3, -5, -3, -5, 0); ctx.bezierCurveTo(-5, 3, 0, 5, 0, 7); ctx.bezierCurveTo(0, 5, 5, 3, 5, 0); ctx.bezierCurveTo(5, -3, 0, -3, 0, 0); ctx.fill(); ctx.restore();
             }
         }
 
         function generateTreeData(x, y, angle, len, width, depth, delay) {
-            let branch = { x, y, angle, len, width, currentLen: 0, delay };
-            allBranches.push(branch);
-            
+            let branch = { x, y, angle, len, width, currentLen: 0, delay }; allBranches.push(branch);
             if (depth > 0) {
                 let endX = x + Math.cos(angle) * len; let endY = y + Math.sin(angle) * len;
                 generateTreeData(endX, endY, angle - 0.3 - Math.random()*0.2, len * (0.75 + Math.random()*0.1), width * 0.7, depth - 1, delay + 20);
                 generateTreeData(endX, endY, angle + 0.3 + Math.random()*0.2, len * (0.75 + Math.random()*0.1), width * 0.7, depth - 1, delay + 20);
                 if (Math.random() > 0.4) generateTreeData(endX, endY, angle + (Math.random()-0.5)*0.3, len * 0.6, width * 0.6, depth - 1, delay + 20);
             } else {
-                let endX = x + Math.cos(angle) * len; let endY = y + Math.sin(angle) * len;
-                let numHearts = Math.floor(Math.random() * 3) + 2; 
-                for(let i = 0; i < numHearts; i++) {
-                    let hx = endX + (Math.random() - 0.5) * 20; let hy = endY + (Math.random() - 0.5) * 20;
-                    allHearts.push(new Heart(hx, hy, delay + 10 + Math.random()*20));
-                }
+                let endX = x + Math.cos(angle) * len; let endY = y + Math.sin(angle) * len; let numHearts = Math.floor(Math.random() * 3) + 2; 
+                for(let i = 0; i < numHearts; i++) { let hx = endX + (Math.random() - 0.5) * 20; let hy = endY + (Math.random() - 0.5) * 20; allHearts.push(new Heart(hx, hy, delay + 10 + Math.random()*20)); }
             }
         }
 
         function initTreeAnimation() {
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-            allBranches = []; allHearts = []; frameCount = 0;
-            let isMobile = window.innerWidth < 600;
-            let startLen = isMobile ? 100 : 160; let startWidth = isMobile ? 12 : 18; let startY = isMobile ? canvas.height : canvas.height + 20;
-            generateTreeData(canvas.width / 2, startY, -Math.PI / 2, startLen, startWidth, 6, 0);
-            cancelAnimationFrame(treeAnimationId); animateTree();
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight; allBranches = []; allHearts = []; frameCount = 0;
+            let isMobile = window.innerWidth < 600; let startLen = isMobile ? 100 : 160; let startWidth = isMobile ? 12 : 18; let startY = isMobile ? canvas.height : canvas.height + 20;
+            
+            // Dibujar fondo estático inicialmente (optimización alpha:false)
+            ctx.fillStyle = '#0f031c'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            generateTreeData(canvas.width / 2, startY, -Math.PI / 2, startLen, startWidth, 6, 0); cancelAnimationFrame(treeAnimationId); animateTree();
         }
 
         function animateTree() {
-            ctx.fillStyle = 'rgba(15, 3, 28, 0.2)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.lineCap = 'round';
+            // Capa semitransparente para efecto trail
+            ctx.fillStyle = 'rgba(15, 3, 28, 0.2)'; ctx.fillRect(0, 0, canvas.width, canvas.height); ctx.lineCap = 'round';
             allBranches.forEach(b => {
                 if (frameCount >= b.delay) {
                     if (b.currentLen < b.len) b.currentLen += 2.5; 
@@ -599,13 +521,88 @@
                     ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo(endX, endY); ctx.lineWidth = b.width; ctx.strokeStyle = '#e2b7ff'; ctx.shadowColor = '#b057f5'; ctx.shadowBlur = 10; ctx.stroke();
                 }
             });
-            allHearts.forEach(h => h.draw());
-            frameCount++;
+            allHearts.forEach(h => h.draw()); frameCount++;
             if (frameCount === 180) document.getElementById('oscarGlassLetter').classList.add('show-letter');
             treeAnimationId = requestAnimationFrame(animateTree);
         }
 
-        window.addEventListener('resize', () => { if(document.getElementById('modalTreeContainer').classList.contains('active')) initTreeAnimation(); });
+        // -----------------------------------------------------
+        // ÁRBOL DE CAMIL (Fresitas y color rosado pastel)
+        // -----------------------------------------------------
+        const camilCanvas = document.getElementById('camilTreeCanvas'); 
+        const camilCtx = camilCanvas.getContext('2d', { alpha: false }); // Optimización para evitar composición alfa pesada
+        let camilBranches = []; let camilStrawberries = []; let camilFrameCount = 0; let camilTreeAnimationId;
+
+        class Strawberry {
+            constructor(x, y, delay) {
+                this.x = x; this.y = y; this.delay = delay; this.size = 0; this.targetSize = Math.random() * 0.8 + 0.6; 
+                this.falling = Math.random() > 0.8; this.vy = Math.random() * 1 + 0.5; this.vx = (Math.random() - 0.5) * 1; this.sway = Math.random() * Math.PI * 2; 
+            }
+            draw() {
+                if (camilFrameCount < this.delay) return; 
+                if (this.size < this.targetSize) { this.size += 0.03; } 
+                else if (this.falling) { this.y += this.vy; this.x += Math.sin(this.sway) * 0.5; this.sway += 0.05; }
+                
+                camilCtx.save(); 
+                camilCtx.translate(this.x, this.y); 
+                camilCtx.scale(this.size, this.size); 
+                camilCtx.font = "26px Arial"; 
+                camilCtx.textAlign = "center";
+                camilCtx.textBaseline = "middle";
+                camilCtx.shadowColor = 'rgba(255, 107, 129, 0.8)'; 
+                camilCtx.shadowBlur = 12;
+                camilCtx.fillText('🍓', 0, 0); 
+                camilCtx.restore();
+            }
+        }
+
+        function generateCamilTreeData(x, y, angle, len, width, depth, delay) {
+            let branch = { x, y, angle, len, width, currentLen: 0, delay }; camilBranches.push(branch);
+            if (depth > 0) {
+                let endX = x + Math.cos(angle) * len; let endY = y + Math.sin(angle) * len;
+                generateCamilTreeData(endX, endY, angle - 0.3 - Math.random()*0.2, len * (0.75 + Math.random()*0.1), width * 0.7, depth - 1, delay + 20);
+                generateCamilTreeData(endX, endY, angle + 0.3 + Math.random()*0.2, len * (0.75 + Math.random()*0.1), width * 0.7, depth - 1, delay + 20);
+                if (Math.random() > 0.4) generateCamilTreeData(endX, endY, angle + (Math.random()-0.5)*0.3, len * 0.6, width * 0.6, depth - 1, delay + 20);
+            } else {
+                let endX = x + Math.cos(angle) * len; let endY = y + Math.sin(angle) * len; let numStrawberries = Math.floor(Math.random() * 3) + 2; 
+                for(let i = 0; i < numStrawberries; i++) { let hx = endX + (Math.random() - 0.5) * 20; let hy = endY + (Math.random() - 0.5) * 20; camilStrawberries.push(new Strawberry(hx, hy, delay + 10 + Math.random()*20)); }
+            }
+        }
+
+        function initCamilTreeAnimation() {
+            camilCanvas.width = window.innerWidth; camilCanvas.height = window.innerHeight; camilBranches = []; camilStrawberries = []; camilFrameCount = 0;
+            let isMobile = window.innerWidth < 600; let startLen = isMobile ? 100 : 160; let startWidth = isMobile ? 12 : 18; let startY = isMobile ? camilCanvas.height : camilCanvas.height + 20;
+            
+            // Fondo base inicial
+            camilCtx.fillStyle = '#1d1326'; camilCtx.fillRect(0, 0, camilCanvas.width, camilCanvas.height);
+            
+            generateCamilTreeData(camilCanvas.width / 2, startY, -Math.PI / 2, startLen, startWidth, 6, 0); cancelAnimationFrame(camilTreeAnimationId); animateCamilTree();
+        }
+
+        function animateCamilTree() {
+            // Efecto trail optimizado
+            camilCtx.fillStyle = 'rgba(29, 19, 38, 0.2)'; 
+            camilCtx.fillRect(0, 0, camilCanvas.width, camilCanvas.height); 
+            camilCtx.lineCap = 'round';
+            
+            camilBranches.forEach(b => {
+                if (camilFrameCount >= b.delay) {
+                    if (b.currentLen < b.len) b.currentLen += 2.5; 
+                    let endX = b.x + Math.cos(b.angle) * b.currentLen; let endY = b.y + Math.sin(b.angle) * b.currentLen;
+                    camilCtx.beginPath(); camilCtx.moveTo(b.x, b.y); camilCtx.lineTo(endX, endY); camilCtx.lineWidth = b.width; 
+                    camilCtx.strokeStyle = '#ffb7c5'; camilCtx.shadowColor = '#ff6b81'; camilCtx.shadowBlur = 10; camilCtx.stroke();
+                }
+            });
+            camilStrawberries.forEach(s => s.draw()); camilFrameCount++;
+            
+            if (camilFrameCount === 180) document.getElementById('camilLetterBox').classList.add('show-letter');
+            camilTreeAnimationId = requestAnimationFrame(animateCamilTree);
+        }
+
+        window.addEventListener('resize', () => { 
+            if(document.getElementById('modalTreeContainer').classList.contains('active')) initTreeAnimation(); 
+            if(document.getElementById('modalCamilContainer').classList.contains('active')) initCamilTreeAnimation(); 
+        });
     </script>
 </body>
 </html>
