@@ -597,7 +597,7 @@
         let comets = [];
         let bokehParticles = [];
         let photoTrailParticles = []; 
-        const numWarpStars = 2500; 
+        const numWarpStars = 600; // OPTIMIZADO: reducido de 2500 a 600
         
         const warmColors = ['#FFD700', '#FFA500', '#FF8C00', '#FFF8DC', '#FFE4B5', '#e2b7ff'];
         const nebulaColors = ['rgba(75, 0, 130, 0.08)', 'rgba(139, 0, 0, 0.06)', 'rgba(255, 140, 0, 0.05)', 'rgba(148, 0, 211, 0.07)'];
@@ -919,7 +919,8 @@
                 if (camilFrameCount < this.delay) return; 
                 if (this.size < this.targetSize) { this.size += 0.03; } else if (this.falling) { this.y += this.vy; this.x += Math.sin(this.sway) * 0.5; this.sway += 0.05; }
                 camilCtx.save(); camilCtx.translate(this.x, this.y); camilCtx.scale(this.size, this.size); camilCtx.font = "26px Arial"; camilCtx.textAlign = "center"; camilCtx.textBaseline = "middle";
-                camilCtx.shadowColor = 'rgba(255, 107, 129, 0.8)'; camilCtx.shadowBlur = 12; camilCtx.fillText('🍓', 0, 0); camilCtx.restore();
+                // OPTIMIZADO: Eliminado el shadowBlur costoso
+                camilCtx.fillText('🍓', 0, 0); camilCtx.restore();
             }
         }
 
@@ -950,7 +951,8 @@
                     if (b.currentLen < b.len) b.currentLen += 2.5; 
                     let endX = b.x + Math.cos(b.angle) * b.currentLen; let endY = b.y + Math.sin(b.angle) * b.currentLen;
                     camilCtx.beginPath(); camilCtx.moveTo(b.x, b.y); camilCtx.lineTo(endX, endY); camilCtx.lineWidth = b.width; 
-                    camilCtx.strokeStyle = '#ffb7c5'; camilCtx.shadowColor = '#ff6b81'; camilCtx.shadowBlur = 10; camilCtx.stroke();
+                    // OPTIMIZADO: Eliminado el shadowColor y shadowBlur costosos
+                    camilCtx.strokeStyle = '#ffb7c5'; camilCtx.stroke();
                 }
             });
             camilStrawberries.forEach(s => s.draw()); camilFrameCount++;
