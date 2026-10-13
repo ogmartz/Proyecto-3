@@ -407,6 +407,14 @@
                 <div class="inner-decor inner-note1">🎵🎶</div>
                 <div class="inner-decor inner-note2">🎼</div>
                 <div class="inner-decor inner-heart">💜✨</div>
+                
+                <!-- REPRODUCTOR DE AUDIO PARA OSCAR -->
+                <div style="text-align: center; margin: 15px 0 0 0; z-index: 10; position: relative;">
+                    <audio id="oscarAudio" controls style="height: 35px; width: 250px; opacity: 0.8;">
+                        <source src="tu_cancion.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                
                 <div class="modal-body">
                     <div class="text-content text-content-oscar">
                         <h1 id="oscarTitle">TÍTULO</h1>
@@ -524,6 +532,10 @@
 
                 document.getElementById('modalGalaxyContainer').classList.add('active');
                 initGalaxyWarpAnimation(); 
+                
+                // NUEVO: Reproducir la canción al abrir la carta
+                const oscarAudio = document.getElementById('oscarAudio');
+                if(oscarAudio) oscarAudio.play();
 
             } else if (carta.id === 3) {
                 // CAMIL
@@ -568,6 +580,13 @@
             document.getElementById('modalGalaxyContainer').classList.remove('active'); 
             document.getElementById('oscarLetterBox').classList.remove('scale-up', 'open-book');
             
+            // NUEVO: Pausar y reiniciar la canción al cerrar
+            const oscarAudio = document.getElementById('oscarAudio');
+            if(oscarAudio) {
+                oscarAudio.pause();
+                oscarAudio.currentTime = 0;
+            }
+
             // Limpiar contenedor de fotos y partículas estelares
             const photoContainer = document.getElementById('galaxyPhotoContainer');
             photoContainer.classList.remove('visible');
